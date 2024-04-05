@@ -1,0 +1,61 @@
+.header {
+    background-color: #282c34;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-size: calc(10px + 2vmin);
+    color: white;
+
+    justify-content: space-between;
+    width: 1270px;
+    margin: 0 auto;
+
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: #ffffff;
+}
+
+.header_ul {
+     display: flex;
+    //  text-align: right;
+    list-style:none;
+}
+
+.header_li {
+    padding: 20px 10px;
+    width: 120px;
+    //background-color: #ffffff;
+
+}
+
+.header_mesu_text {
+    font-weight: bold;
+    font-size: 1.0625rem;
+    position: relative;
+    display: inline-block;
+    text-decoration-line: none;
+    font-weight: bold;
+    font-size: 1.0625rem;
+}
+
+nav ul li {
+    padding: 0 10px;
+    width: 100px;
+}
+
+.logo{
+    font-weight: bold;
+    font-size: 1.0625rem;
+    margin-left: 10px;
+    
+    display: inline-block;
+    text-decoration-line: none;
+    font-weight: bold;
+    font-size: 1.0625rem;
+}

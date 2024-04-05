@@ -1,14 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import Header from "./fixed_component/Header";
+import Footer from "./fixed_component/Footer";
+import Side_bar from "./fixed_component/Side_bar";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BrowserRouter>
+    <Header />
+    <div className="body">
+      <Side_bar />
+      <App />
+      <Side_bar />
+    </div>
+
+    <Footer />
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
