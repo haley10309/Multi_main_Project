@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import './Account.scss';
 
 function Login(props) {
   const [useraccount, setUseraccount] = useState("");
@@ -42,7 +43,7 @@ function Login(props) {
   };
 
   return (
-    <div className="Login_md">
+    <div className='home_body'>
       <h1>로그인</h1>
       <form onSubmit={LoginFunc}>
         <div className="ID_form_align">

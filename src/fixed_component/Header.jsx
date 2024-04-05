@@ -19,8 +19,8 @@ const Header = () => {
           </li>
 
           <li className="header_li">
-            <a className="header_mesu_text" href="#">
-              Corporation
+            <a className="header_mesu_text" href="/MyPage">
+              MyPage
             </a>
           </li>
 
