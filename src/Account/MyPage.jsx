@@ -3,8 +3,8 @@ import './Account.scss';
 
 function MyPage(props) {
     return (
-        <div>
-            
+        <div className='home_body'>
+            <h2>my page</h2>
         </div>
     );
 }
