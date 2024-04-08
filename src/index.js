@@ -13,9 +13,9 @@ root.render(
   <BrowserRouter>
     <Header />
     <div className="body">
-      <Side_bar />
+     
       <App />
-      <Side_bar />
+      
     </div>
 
     <Footer />

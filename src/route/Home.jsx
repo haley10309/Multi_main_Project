@@ -7,10 +7,16 @@ const Home = () => {
     function clickPostButton(){
         navigate('./Posting');
     }
+    function clickFollowButton(){
+
+    }
     return (
         <div className='home_body'>
-            <h2 className='text'>home</h2>
+            
             <button className='Post_button' onClick={clickPostButton}>Post</button>
+            <button className='Follow_button' onClick={clickFollowButton}>Follow</button>
+            <br/>
+            <h1 className='IT_NEWS'>IT NEWS</h1>
         </div>
     );
 };
