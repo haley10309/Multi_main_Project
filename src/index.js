@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import Header from "./fixed_component/Header";
 import Footer from "./fixed_component/Footer";
-import Side_bar from "./fixed_component/Side_bar";
+import Side_bar from "./fixed_component/Left_Side_bar";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
