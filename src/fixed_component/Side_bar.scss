@@ -1,5 +1,5 @@
 .side_bar {
-    width: 21%; 
+    width: 21%;
     margin: 1%;
 }
 
@@ -14,46 +14,57 @@
     display: flex;
     justify-content: space-between;
 }
-.forum_title{
-    margin:2px;
+
+.forum_title {
+    margin: 2px;
 }
-.forum_title_div{
+
+.forum_title_div {
     display: flex;
     justify-content: space-between;
+    margin : 3%;
 }
-.forum_explanation{
+
+.forum_explanation {
     padding: 5px;
-     background-color: rgb(244, 244, 244);
+    background-color: rgb(244, 244, 244);
     margin-bottom: 2%;
 }
-.Follow_button{
-    width: 100%;
-    margin: 3px;
+
+.Follow_button {
+    width: 90%;
+    margin: 7px;
     background-color: rgb(255, 255, 255);
 }
-.Post_button{
+
+.Post_button {
     margin: 3px;
     background-color: rgb(254, 254, 254);
 }
-.forum_detail_explanation{
-margin-bottom: 10px;
-margin: 10px
+
+.forum_detail_explanation {
+    margin-bottom: 10px;
+    margin: 2%;
+    margin-bottom: 7%;
 }
-li{
+
+li {
     list-style: none;
 }
-.numerical_data{
+
+.numerical_data {
     display: flex;
     justify-content: space-between;
 }
-.numerical_data_single{
 
-}
-.Hot_topic{
+.numerical_data_single {}
+
+.Hot_topic {
     padding: 5px;
-     background-color: rgb(244, 244, 244);
-     margin-top : 2%;
+    background-color: rgb(244, 244, 244);
+    margin-top: 2%;
 }
-.hot_topic_title{
-    padding: 5px;
+
+.hot_topic_title {
+    padding: 1%;
 }

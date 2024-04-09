@@ -29,7 +29,7 @@ const Right_Side_bar = () => {
         </div>
 
         <li className="forum_detail_explanation">
-          ㅇㄹㅁㄴㅇㄹㄴㅇㄹㅁㄷㄴㅇㄹㄴㅇㄹㅁㄹㅇㄴㄹ
+          IT 관련해서 가장 빠른 뉴스를 전달해드리는 포럼!
         </li>
         <div className="numerical_data">
           <div className="numerical_data_single">

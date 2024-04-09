@@ -22,16 +22,18 @@ a:active {
     color: #ffffff;
 }
 
-.header_ul {
-     display: flex;
-    //  text-align: right;
-    list-style:none;
+
+.navigation{
+    display: flex;
+    width: 100%;
 }
 
 .header_li {
-    padding: 20px 10px;
-    width: 120px;
-    //background-color: #ffffff;
+    padding: 1%;
+    width: 100%;
+    text-align: center;
+    list-style:none;
+    
 
 }
 
@@ -43,12 +45,15 @@ a:active {
     text-decoration-line: none;
     font-weight: bold;
     font-size: 1.0625rem;
+    margin : 1%;
+    width: 30%;
+    margin-left: 1%;
 }
 
-nav ul li {
-    padding: 0 10px;
-    width: 100px;
-}
+// nav ul li {
+//     padding: 0 10px;
+//     width: 100%;
+// }
 
 .logo{
     font-weight: bold;
@@ -59,4 +64,23 @@ nav ul li {
     text-decoration-line: none;
     font-weight: bold;
     font-size: 1.0625rem;
+}
+.search_text{
+    margin: 1%;
+    width: 40%;
+    
+}
+.header_li_right{
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: right;
+    width: 30%;
+    padding: 1.5%;
+    
+    
+}
+.header_li_left{
+    margin: 1.5%;
+    
 }
