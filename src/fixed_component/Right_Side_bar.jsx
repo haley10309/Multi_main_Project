@@ -1,16 +1,7 @@
 import React from "react";
 import "./Side_bar.scss";
-import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { useNavigate } from "react-router-dom";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-} from "@mui/material";
+
 
 const Right_Side_bar = () => {
   const navigate = useNavigate();
@@ -50,7 +41,7 @@ const Right_Side_bar = () => {
         </button>
       </div>
       <div className="Hot_topic">
-        <h2 className="hot_topic_title">인기글</h2>
+        <h2 className="hot_topic_title">Most Viewed</h2>
         <h4>갤S24 AI폰 효과 톡톡…삼성전자 1분기 영업익, MX가 절반 이상 벌었다</h4>
         <h4>에티버스, 3년 연속 매출 1조 클럽 가입</h4>
         <h4>케이크 위에 웬 원숭이?…감쪽같이 만든 AI</h4>

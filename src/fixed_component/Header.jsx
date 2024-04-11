@@ -21,7 +21,7 @@ const Header = () => {
           type="text"
           value={search}
           onChange={onChange}
-          placeholder="개발자 여러분 환영합니다"
+          placeholder=" 개발자 여러분 환영합니다"
         />
         
           <li className="header_li_right">
