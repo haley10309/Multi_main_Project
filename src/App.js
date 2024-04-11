@@ -6,6 +6,7 @@ import Join from "./Account/Join";
 import Home from "./route/Home";
 import MyPage from "./Account/MyPage";
 import Post from "./route/Post";
+import { TagPopupPost, FilePopupPost, LinkPopupPost } from "./route/PostPopup";
 import Left_Side_bar from "./fixed_component/Left_Side_bar";
 import Right_Side_bar from "./fixed_component/Right_Side_bar";
 
@@ -24,6 +25,11 @@ class App extends Component {
           <Route path="/MyPage" element={<MyPage />} />
           <Route path="/Posting" element={<Post />} />
           <Route path="/Login" element={<Login />} />
+        </Routes>
+        <Routes>
+          <Route path="/FilePopup" element={<FilePopupPost />} />
+          <Route path="/LinkPopup" element={<LinkPopupPost />} />
+          <Route path="/TagPopup" element={<TagPopupPost />} />
         </Routes>
         <Routes>
         <Route path="*" element={<CustomSideBar_Right />} />
