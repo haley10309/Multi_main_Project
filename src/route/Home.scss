@@ -1,10 +1,33 @@
-.home_body{
+.home_body {
     background-color: rgb(243, 244, 244);
     width: 59%;
     margin-top: 1%;
-    
+
 }
-.dropdown_menu{
+
+.dropdown_menu {
     position: absolute;
     right: 25%;
 }
+
+.posting_box {
+    background-color: antiquewhite;
+    margin: 4%;
+}
+
+.profile_box {
+    display: flex;
+    padding: 3%;
+
+}
+
+.profile_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 70%;
+    overflow: hidden;
+
+    object-fit: cover;
+}
+
+.profile_name {}
