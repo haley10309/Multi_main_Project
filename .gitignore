@@ -24,4 +24,5 @@ yarn-debug.log*
 yarn-error.log*
 
 package-lock.json
+yarn.lock
 # macOS 시스템 파일 무시
