@@ -9,6 +9,7 @@ import Post from "./route/Post";
 import { TagPopupPost, FilePopupPost, LinkPopupPost } from "./route/PostPopup";
 import Left_Side_bar from "./fixed_component/Left_Side_bar";
 import Right_Side_bar from "./fixed_component/Right_Side_bar";
+import Forum_Detail from "./route/Forum_Detail";
 
 /* App.js */
 
@@ -25,6 +26,7 @@ class App extends Component {
           <Route path="/MyPage" element={<MyPage />} />
           <Route path="/Posting" element={<Post />} />
           <Route path="/Login" element={<Login />} />
+          <Route path='/Forum_Detail' element={<Forum_Detail/>}/>
         </Routes>
         <Routes>
           <Route path="/FilePopup" element={<FilePopupPost />} />

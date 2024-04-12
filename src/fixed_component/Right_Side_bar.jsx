@@ -4,11 +4,18 @@ import { useNavigate } from "react-router-dom";
 
 
 const Right_Side_bar = () => {
+
+
   const navigate = useNavigate();
   function clickPostButton() {
     navigate("./Posting");
   }
+
+
   function clickFollowButton() {}
+
+
+
   return (
     <div className="side_bar">
       <div className="forum_explanation">

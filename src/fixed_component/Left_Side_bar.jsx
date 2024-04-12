@@ -53,7 +53,7 @@ const Left_Side_bar = () => {
 
           <TableBody className="side_bar">
             <TableRow className="tableRow">
-              <TableCell>Forum1</TableCell>
+              <TableCell className="forum_button" href='/'>Forum1</TableCell>
               <TableCell align="right">
                 <HeartOutlined />
               </TableCell>
