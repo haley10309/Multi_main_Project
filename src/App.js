@@ -34,7 +34,7 @@ class App extends Component {
           <Route path="/TagPopup" element={<TagPopupPost />} />
         </Routes>
         <Routes>
-        <Route path="*" element={<CustomSideBar_Right />} />
+        {/* <Route path="*" element={<CustomSideBar_Right />} /> */}
         </Routes>
       </>
     );

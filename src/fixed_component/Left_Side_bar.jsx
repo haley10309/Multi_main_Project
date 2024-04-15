@@ -12,6 +12,7 @@ import {
   Paper,
 } from "@mui/material";
 
+
 const Left_Side_bar = () => {
   return (
     <div className="side_bar">
@@ -53,23 +54,23 @@ const Left_Side_bar = () => {
 
           <TableBody className="side_bar">
             <TableRow className="tableRow">
-              <TableCell className="forum_button" href='/'>Forum1</TableCell>
+              <TableCell ><div className="forum_button" href='/Forum_Detail'>Forum1</div></TableCell>
               <TableCell align="right">
-                <HeartOutlined />
+                <HeartFilled  />
               </TableCell>
             </TableRow>
 
             <TableRow className="tableRow">
               <TableCell>Forum2</TableCell>
               <TableCell align="right">
-                <HeartOutlined />
+                <HeartFilled />
               </TableCell>
             </TableRow>
 
             <TableRow className="tableRow">
               <TableCell>Forum3</TableCell>
               <TableCell align="right">
-                <HeartOutlined />
+                <HeartFilled />
               </TableCell>
             </TableRow>
           </TableBody>

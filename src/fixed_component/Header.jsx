@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Header.scss";
 
+
 const Header = () => {
   const [search, setSearch] = useState("");
   const onChange = (e) => {
@@ -14,6 +15,11 @@ const Header = () => {
           <a className="logo" href="/">
             DevOZ
           </a>
+          <img
+            src="img/DevOZ_test_logo.png"
+            className="test_logo"
+            alt="React"
+          />
         </li>
 
         <input
@@ -21,7 +27,7 @@ const Header = () => {
           type="text"
           value={search}
           onChange={onChange}
-          placeholder=" 개발자 여러분 환영합니다"
+          placeholder=" Hello World!"
         />
         
           <li className="header_li_right">
