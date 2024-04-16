@@ -15,13 +15,13 @@ const Header = () => {
           <a className="logo" href="/">
             DevOZ
           </a>
-          <img
+          
+        </li>
+        <img
             src="img/DevOZ_test_logo.png"
             className="test_logo"
             alt="React"
           />
-        </li>
-
         <input
           className="search_text"
           type="text"

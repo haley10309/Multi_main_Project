@@ -1,6 +1,7 @@
 import React from "react";
 import "./Side_bar.scss";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 import {
   Table,
@@ -12,7 +13,6 @@ import {
   Paper,
 } from "@mui/material";
 
-
 const Left_Side_bar = () => {
   return (
     <div className="side_bar">
@@ -20,8 +20,11 @@ const Left_Side_bar = () => {
         <Table size="small">
           <TableHead className="side_bar">
             <TableRow className="tableRow">
-              <TableCell> <h3>Recent</h3></TableCell>
-              <TableCell align="right"> edit</TableCell>
+              <TableCell>
+                
+                <h3>Recent</h3>
+              </TableCell>
+              
             </TableRow>
           </TableHead>
 
@@ -47,28 +50,44 @@ const Left_Side_bar = () => {
         <Table size="large">
           <TableHead className="side_bar">
             <TableRow className="tableRow">
-              <TableCell> <h3>Forums</h3></TableCell>
-              <TableCell align="right"> edit</TableCell>
+              <TableCell>
+                {" "}
+                <h3>Forums</h3>
+              </TableCell>
+              
             </TableRow>
           </TableHead>
 
           <TableBody className="side_bar">
             <TableRow className="tableRow">
-              <TableCell ><div className="forum_button" href='/Forum_Detail'>Forum1</div></TableCell>
-              <TableCell align="right">
-                <HeartFilled  />
+              <TableCell>
+                <Link to="/Forum_page" className="forum_button" state={{forum_name:"Forum1"}}>
+                  Forum1
+                </Link>
               </TableCell>
-            </TableRow>
-
-            <TableRow className="tableRow">
-              <TableCell>Forum2</TableCell>
               <TableCell align="right">
                 <HeartFilled />
               </TableCell>
             </TableRow>
 
             <TableRow className="tableRow">
-              <TableCell>Forum3</TableCell>
+              <TableCell>
+                <Link to="/Forum_page" className="forum_button" state={{forum_name:"Forum2"}}>
+                  Forum2
+                </Link>
+              </TableCell>
+              <TableCell align="right">
+                <HeartFilled />
+              </TableCell>
+            </TableRow>
+
+            <TableRow className="tableRow">
+              <TableCell>
+                <Link to="/Forum_page" className="forum_button"state={{forum_name:"Forum3"}}>
+                  {/* 포럼 아이디 같이 보내기 */}
+                  Forum2
+                </Link>
+              </TableCell>
               <TableCell align="right">
                 <HeartFilled />
               </TableCell>
