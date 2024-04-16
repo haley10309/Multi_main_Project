@@ -1,138 +1,191 @@
-/* Assign.js */
-
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import axios from 'axios';
 import './Account.scss';
+import { AiFillEye } from 'react-icons/ai';
+import { AiFillEyeInvisible } from 'react-icons/ai';
 
-// React 함수 컴포넌트인 'assign' 정의
 const Join = () => {
-  // [입력 상태값, 해당 상태값 업데이트 함수] = 리액트훅('');
-  const [id, setId] = useState("");
-  const [pwd, setPwd] = useState("");
-  const [pwdCheck, setPwdCheck] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [email, setEmail] = useState("");
-  const [agree, setAgree] = useState(false); // 서비스 이용약관 동의
-  const [errorMessage, setErrorMessage] = useState(""); // 에러 메시지 표시
+  //초기값
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [nickName, setNickName] = useState('');
+  //오류 메시지
+  const [emailMessage, setEmailMessage] = useState('');
+  const [passwordMessage, setPasswordMessage] = useState('');
+  const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('');
+  const [nickNameMessage, setNickNameMessage] = useState('');
+  //유효성 검사
+  const [isEmail, setIsEmail] = useState(false);
+  const [isPassword, setIsPassword] = useState(false);
+  const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+  const [isNickNmae, setIsNickName] = useState(false);
+  //비밀번호 표시
+  const [showPassword, setShowPassword] = useState({
+    type: 'password',
+    visible: false,
+  });
+  //비밀번호 확인 표시
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState({
+    type: 'password',
+    visible: false,
+  });
 
-  // ID 중복 확인 함수
-  const idCheck = () => {
-    console.log("사용 불가한 ID입니다.");
-  };
+  //이벤트 핸들러
+  const onChangeEmail = (e) => {
+    const currentEmail = e.target.value;
+    setEmail(currentEmail);
+    const emailRegExp =
+      /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
 
-  // 닉네임 중복 확인 함수
-  const nicknameCheck = () => {
-    console.log("사용 불가한 닉네임입니다.");
-  };
-
-  // 회원가입 제출 함수
-  const assignSubmit = async (e) => {
-    e.preventDefault(); // 폼 제출 후 리로드 방지
-
-    // 서비스 이용약관 동의 여부 확인
-    if (!agree) {
-      setErrorMessage("서비스 이용약관에 동의해야 합니다."); // 동의하지 않은 경우 오류 메시지 설정 후 함수 종료
-      return;
+    if (!emailRegExp.test(currentEmail)) {
+      setEmailMessage('이메일의 형식이 올바르지 않습니다');
+      setIsEmail(false);
+    } else {
+      setEmailMessage('사용 가능한 이메일 입니다');
+      setIsEmail(true);
     }
-
-    // 비밀번호와 비밀번호 확인이 일치 여부 확인
-    if (pwd !== pwdCheck) {
-      setErrorMessage("비밀번호가 일치하지 않습니다.");
-      return;
-    }
-
-    // // 서버로 회원가입 데이터를 전송 요청
-    //       try {
-    //         const response = await axios.post('/api/assign', {
-    //           id,
-    //           pwd,
-    //           pwdCheck,
-    //           nickname,
-    //           email
-    //         });
-    //         console.log('회원가입 완료:', response.data); // 성공적으로 응답을 받은 경우 > 콘솔 로그 출력
-    //       } catch (error) {
-    //          // 서버에서 이미 가입된 ID나 닉네임이라는 응답 시 오류 메시지 처리
-    //         if (error.response && error.response.status === 404) {
-    //         setErrorMessage('이미 가입된 ID 혹은 닉네임입니다.');
-    //       } else {
-    //         console.error('회원가입 실패:', error); // 오류가 발생한 경우 > 콘솔 에러 출력
-    //       }
-    //     };
   };
 
+  const onChangePassword = (e) => {
+    const currentPassword = e.target.value;
+    setPassword(currentPassword);
+    const passwordRegExp =
+      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+
+    if (!passwordRegExp.test(currentPassword)) {
+      setPasswordMessage(
+        '숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요'
+      );
+      setIsPassword(false);
+    } else {
+      setPasswordMessage('안전한 비밀번호 입니다');
+      setIsPassword(true);
+    }
+  };
+
+  const onChangePasswordConfirm = (e) => {
+    const currentPasswordConfirm = e.target.value;
+    setPasswordConfirm(currentPasswordConfirm);
+
+    if (password !== currentPasswordConfirm) {
+      setPasswordConfirmMessage('비밀번호가 일치하지 않습니다');
+      setIsPasswordConfirm(false);
+    } else {
+      setPasswordConfirmMessage('비밀번호가 일치합니다');
+      setIsPasswordConfirm(true);
+    }
+  };
+
+  const onChangeNickName = (e) => {
+    const currentNickName = e.target.value;
+    setNickName(currentNickName);
+    const nickNameRegExp = /^[a-zA-z0-9]{4,12}$/;
+
+    if (!nickNameRegExp.test(currentNickName)) {
+      setNickNameMessage(
+        '닉네임은 4-12글자 대소문자 또는 숫자만 입력 가능합니다'
+      );
+      setIsNickName(false);
+    } else {
+      setNickNameMessage('사용가능한 닉네임 입니다');
+      setIsNickName(true);
+    }
+  };
+
+  //비밀번호 표시 핸들러
+  const handleShowPassword = (e) => {
+    setShowPassword(function () {
+      if (!showPassword.visible) {
+        return { type: 'text', visible: true };
+      } else {
+        return { type: 'password', visible: false };
+      }
+    });
+  };
+  //비밀번호 확인 표시 핸들러
+  const handleShowPasswordConfirm = (e) => {
+    setShowPasswordConfirm(function () {
+      if (!showPasswordConfirm.visible) {
+        return { type: 'text', visible: true };
+      } else {
+        return { type: 'password', visible: false };
+      }
+    });
+  };
+  //이메일 중복 확인 핸들러
+  const handleEmailCheck = (e) => {
+    e.preventDefault();
+  };
+  //회원가입 정보 보내기 핸들러
+  const handleJoin = async (e) => {
+    e.preventDefault();
+  };
+
+  //HTML
   return (
-    <div className='home_body'>
-      {/* 오류 메시지가 있을 때만 표시 */}
-      {errorMessage && <div className="error-message">{errorMessage}</div>}
-
-      {/* 회원가입 폼 */}
-      <form onSubmit={assignSubmit}>
-        <div className="title">회원가입을 위해 정보를 입력해주세요.</div>
-        {/* ID */}
-        <div className="input-list">
-          <div className="label">ID</div>
+    <div>
+      <h1>회원가입</h1>
+      <form className="join-form" action="">
+        <div className="form-list">
+          <label htmlFor="email">E-mail</label>
+          <br />
           <input
-            type="text"
-            placeholder="아이디"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-          />
-          {/* 중복 확인 버튼 ID */}
-          <button type="id-button" onClick={idCheck}>
-            중복 확인
-          </button>
-        </div>
-        {/* PWD */}
-        <div className="input-list">
-          <div className="label">PW</div>
-          <input
-            type="password"
-            placeholder="비밀번호"
-            value={pwd}
-            onChange={(e) => setPwd(e.target.value)}
-          />
-        </div>
-        {/* PWD(확인) */}
-        <div className="input-list">
-          <div className="label">PW(확인)</div>
-          <input
-            type="password"
-            placeholder="비밀번호 확인"
-            value={pwdCheck}
-            onChange={(e) => setPwdCheck(e.target.value)}
-          />
-        </div>
-        {/* 비밀번호 & 비밀번호(확인) 불일치 오류 메시지 */}
-        <div className="input-list">
-          {pwd !== pwdCheck && (
-            <div className="error-message">비밀번호가 일치하지 않습니다.</div>
-          )}
-        </div>
-
-        {/* EMAIL */}
-        <div className="input-list">
-          <div className="label">이메일</div>
-          <input
+            id="email"
             type="email"
-            placeholder="이메일"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            placeholder="이메일을 입력해주세요"
+            onChange={onChangeEmail}
           />
+          <button className="email-button">중복확인</button>
+          <p className="message">{emailMessage}</p>
         </div>
-
-        {/* 서비스 이용약관 동의 체크박스 */}
-        {/* <label>
+        <div className="form-list">
+          <label htmlFor="nickName">Nick Name</label> <br />
           <input
-            type="checkbox"
-            checked={agree}
-            onChange={(e) => setAgree(e.target.checked)}
+            id="nickName"
+            name="nickName"
+            value={nickName}
+            placeholder="닉네임을 입력해주세요"
+            onChange={onChangeNickName}
           />
-          회원가입 각
-        </label> */}
-
-        {/* 회원가입 버튼 */}
-        <button type="submit">회원가입</button>
+          <p className="message">{nickNameMessage}</p>
+        </div>
+        <div className="form-list">
+          <label htmlFor="password">Password</label> <br />
+          <input
+            type={showPassword.type}
+            id="password"
+            name="password"
+            value={password}
+            placeholder="비밀번호를 입력해주세요"
+            onChange={onChangePassword}
+          />
+          <span onClick={handleShowPassword} className="visible-icon">
+            {showPassword.visible ? <AiFillEye /> : <AiFillEyeInvisible />}
+          </span>
+          <p className="message">{passwordMessage}</p>
+        </div>
+        <div className="form-list">
+          <label htmlFor="passwordConfirm">Password Confirm</label> <br />
+          <input
+            type={showPasswordConfirm.type}
+            id="passwordConfirm"
+            name="passwordConfirm"
+            value={passwordConfirm}
+            placeholder="비밀번호를 다시 입력해주세요"
+            onChange={onChangePasswordConfirm}
+          />
+          <span onClick={handleShowPasswordConfirm} className="visible-icon">
+            {showPasswordConfirm.visible ? (
+              <AiFillEye />
+            ) : (
+              <AiFillEyeInvisible />
+            )}
+          </span>
+          <p className="message">{passwordConfirmMessage}</p>
+        </div>
       </form>
     </div>
   );
