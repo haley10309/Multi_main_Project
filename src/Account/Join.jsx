@@ -3,8 +3,10 @@ import axios from 'axios';
 import './Account.scss';
 import { AiFillEye } from 'react-icons/ai';
 import { AiFillEyeInvisible } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 const Join = () => {
+  const navigate = useNavigate();
   //초기값
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -118,8 +120,26 @@ const Join = () => {
     e.preventDefault();
   };
   //회원가입 정보 보내기 핸들러
-  const handleJoin = async (e) => {
+  const handleJoin = (e) => {
     e.preventDefault();
+    if (isEmail && isPassword && isPasswordConfirm && isNickNmae) {
+      axios
+        .post('url', {
+          user_email: 'email',
+          password: 'password',
+          nickname: 'nickName',
+        })
+        .then((response) => {
+          console.log(response);
+          alert('회원가입을 축하합니다');
+          return navigate('/Login');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      alert('가입 양식을 확인하세요');
+    }
   };
 
   //HTML
@@ -186,6 +206,9 @@ const Join = () => {
           </span>
           <p className="message">{passwordConfirmMessage}</p>
         </div>
+        <button className="join-button" onclick={handleJoin}>
+          회원가입
+        </button>
       </form>
     </div>
   );
