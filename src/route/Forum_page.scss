@@ -1,0 +1,39 @@
+.section_navigation_bar {
+    color: black;
+    text-decoration-line: none;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    padding: 2%;
+    align-items: center;
+}
+
+.section_single_manu {
+    color: rgb(7, 6, 6);
+    width: 10%;
+    text-decoration-line: none;
+    //background-color: rgb(85, 194, 86);
+    padding: 1%;
+    align-items: center;
+}
+.section_single_manu2{
+    width: 20%;
+    text-decoration-line: none;
+    //background-color: rgb(85, 194, 86);
+    padding: 1%;
+    align-items: center;
+}
+.na{
+    color: rgb(7, 6, 6);
+    width: 100%;
+    padding: 3%;
+}
+.title_to_Board{
+    text-decoration-line: none;
+    color: black;
+    
+}
+.title_li{
+    color: rgb(7, 6, 6);
+}
