@@ -116,6 +116,14 @@ const Join = () => {
       }
     });
   };
+  //이메일 중복 확인 핸들러
+  const handleEmailCheck = (e) => {
+    e.preventDefault();
+  };
+  //회원가입 정보 보내기 핸들러
+  const handleJoin = async (e) => {
+    e.preventDefault();
+  };
 
   //HTML
   return (
