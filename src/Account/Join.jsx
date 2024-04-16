@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Account.scss';
+
 import { AiFillEye } from 'react-icons/ai';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
+import './Join.scss';
 
 const Join = () => {
   const navigate = useNavigate();

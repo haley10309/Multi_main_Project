@@ -1,19 +1,30 @@
 import React, { useState } from "react";
-import "./Home.scss";
-import { Link, useNavigate } from "react-router-dom";
+//import "./Home.scss";
+import "./Forum_page.scss";
+import { Link, useNavigate,useLocation } from "react-router-dom";
 import DropDown from "./DropDown";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import MessageIcon from "@mui/icons-material/Message";
 
-const Home = () => {
-  const navigate = useNavigate();
+const Forum_page = () => {
+  
+  const location = useLocation();
+  const forumName = location.state.forum_name;
   const [view, setView] = useState(false);
+  
 
   return (
     <div className="home_body">
-      <h1 className="IT_NEWS">IT NEWS</h1>
-      <div className="">
+      <h1 className="forum_name">{forumName}</h1>
+      <div className="section_navigation_bar">
+        <Link className="section_single_manu" to={'/whole'} ><li className="na">전체</li></Link>
+        <Link className="section_single_manu" to={'/news'} ><li className="na">뉴스</li></Link>
+        <Link className="section_single_manu" to={'/question'} ><li className="na">질문</li></Link>
+        <Link className="section_single_manu" to={'/Debug'} ><li className="na">Debug</li></Link>
+        <Link className="section_single_manu" to={'/Study'} ><li className="na">Study</li></Link>
+      </div>
+      <div className="order_menu">
         <ul
           className="dropdown_menu"
           onClick={() => {
@@ -33,21 +44,21 @@ const Home = () => {
               className="profile_img"
               alt="React"
             />
-            <h4 className="profile_name">owenDorothy</h4>
+            <h4 className="profile_name">nick name</h4>
           </div>
-          <li className="upload_time">2 min ago</li>
+          <li className="upload_time">create date</li>
         </div>
         <div className="title_div">
           <div className="board_title">
             <div>
-              <li>'클로바X'는 왜 재미없는 답을 할까…네이버가 알려줌</li>
+              <Link className="title_to_Board" to={'/Board_Detail'} state={{ forum_name :"하영" }}><li className="title_li">하영</li></Link>
             </div>
 
             <div className="likes_and_comment">
               <ThumbUpIcon />
-              3.2k
+              like_count
               <MessageIcon />
-              400
+              comment_count
             </div>
           </div>
 
@@ -64,4 +75,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Forum_page;
