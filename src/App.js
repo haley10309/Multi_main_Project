@@ -5,11 +5,11 @@ import { Component } from "react";
 import Join from "./Account/Join";
 import Home from "./route/Home";
 import MyPage from "./Account/MyPage";
-import Post from "./route/Post";
-import { TagPopupPost, FilePopupPost, LinkPopupPost } from "./route/PostPopup";
+import Posting from "./route/Posting";
 import Left_Side_bar from "./fixed_component/Left_Side_bar";
 import Right_Side_bar from "./fixed_component/Right_Side_bar";
-import Forum_Detail from "./route/Forum_Detail";
+import Board_Detail from "./route/Board_Detail";
+import Forum_page from "./route/Forum_page";
 
 /* App.js */
 
@@ -24,14 +24,10 @@ class App extends Component {
           <Route path="/" element={<Home />} />
           <Route path="/Join" element={<Join />} />
           <Route path="/MyPage" element={<MyPage />} />
-          <Route path="/Posting" element={<Post />} />
+          <Route path="/Posting" element={<Posting />} />
           <Route path="/Login" element={<Login />} />
-          <Route path='/Forum_Detail' element={<Forum_Detail/>}/>
-        </Routes>
-        <Routes>
-          <Route path="/FilePopup" element={<FilePopupPost />} />
-          <Route path="/LinkPopup" element={<LinkPopupPost />} />
-          <Route path="/TagPopup" element={<TagPopupPost />} />
+          <Route path='/Board_Detail' element={<Board_Detail/>}/>
+          <Route path='/Forum_page' element={<Forum_page/>}/>
         </Routes>
         <Routes>
         {/* <Route path="*" element={<CustomSideBar_Right />} /> */}

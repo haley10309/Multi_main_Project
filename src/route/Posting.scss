@@ -1,0 +1,144 @@
+/* Posting.scss */
+
+// All
+.posting_body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    margin-left: 2%;
+    padding: 2%;
+    width: 75%;
+  }
+
+// Title 
+.posting_body h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+// Text-box (Span글자)
+.posting_forum label,
+.posting_section label,
+.posting_title label,
+.posting_content label,
+.posting_hashtag label,
+.posting_link label,
+.posting_Photo label {
+  font-weight: bold;
+  margin-right: 5%;
+  vertical-align: top;
+}
+
+// Text-box 간격
+.posting_forum,
+.posting_section,
+.posting_title,
+.posting_content,
+.posting_hashtag,
+.posting_link,
+.posting_Photo,
+.posting_buttons {
+  margin-bottom: 10px;
+}
+
+// Text-box 스타일
+.posting_forum input,
+.posting_title input,
+.posting_hashtag input,
+.posting_link input {
+  width: 75%;
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+// Text-box 스타일 (분야만 따로)
+.posting_section select {
+  width: 15%;
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+// Text-box 스타일 (내용 content 따로)
+.posting_content textarea {
+    width: 75%;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    padding: 0.5%;
+    vertical-align: top;
+  }
+
+// Button - 사진 업로드
+  .posting_Photo button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 7px 15px;
+    cursor: pointer;
+  }
+
+// Photo - 사진 업로드 팝업 (왜 뜨는거지?)
+.photo_popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .photo_popup h2 {
+    margin-top: 0;
+  }
+
+  .photo_popup button {
+    margin-right: 10px;
+  }
+  
+  .photo_popup button:last-child {
+    margin-right: 0;
+  }
+
+// Button - Cancel, Post
+  .posting_buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 15%;
+  }
+  
+// Button - Cancel, Post 위치
+  .posting_buttons button {
+    border: none;
+    border-radius: 5px;
+    padding: 7px 15px;
+    cursor: pointer;
+  }
+  
+// Button - Cancel 스타일
+  .posting_buttons button[type="button"] {
+    background-color: #dc3545;
+    color: #fff;
+    margin-right: 1%;
+  }
+  
+// Button - Post 스타일
+  .posting_buttons button[type="submit"] {
+    background-color: #28a745;
+    color: #fff;
+  }
