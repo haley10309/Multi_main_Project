@@ -1,0 +1,106 @@
+.home_body {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    width: 100%; /* 화면 너비 전체를 사용 */
+
+  
+    .profile {
+        width: 100%;
+        max-width: 100%; /* 최대 너비를 100%로 설정, 필요에 따라 조정 가능 */
+        background: #fff;
+        margin-bottom: 20px;
+        
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+
+            .avatar {
+                width: 50px;
+                height: 50px;
+                background: #ccc;
+                border-radius: 50%;
+            }
+
+            .nickname {
+                flex-grow: 1;
+                text-align: center;
+            }
+
+            .settings-icon {
+                font-size: 1.5em; // Placeholder for settings icon
+            }
+        }
+
+        .navigation ul{
+            display: flex;
+            justify-content: flex-start;
+            background: #f7f7f7;
+            padding: 10px 0;
+
+            .nav-item {
+                padding: 5px 10px;
+                cursor: pointer;
+                &.active {
+                    background-color: yellow;
+                }
+            }
+        }
+
+        .content {
+            .post-card {
+                display: flex;
+                padding: 15px;
+                border-bottom: 1px solid #eee;
+
+                .post-avatar {
+                    width: 40px;
+                    height: 40px;
+                    background: #ddd;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                }
+
+                .post-details {
+                    flex-grow: 1;
+
+                    .post-nickname {
+                        font-weight: bold;
+                    }
+
+                    .post-content {
+                        margin: 5px 0;
+                    }
+
+                    .post-image {
+                        width: 100%;
+                        height: 200px;
+                        background: #ddd;
+                        margin: 10px 0;
+                    }
+
+                    .post-interactions {
+                        display: flex;
+                        align-items: center;
+
+                        .hashtags {
+                            color: #555;
+                            margin-right: 10px;
+                        }
+
+                        .likes {
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+input {
+    width: 200px;
+  }
