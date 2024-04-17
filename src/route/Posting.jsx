@@ -1,17 +1,19 @@
 /* Posting.jsx */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Posting.scss';
+import SearchIcon from '@mui/icons-material/Search';
 
 const Posting = () => {
     // 상태 변수 설정
     const [forum, setForum] = useState('');
+    const [editForum, setEditForum] = useState(false); //Forum 돋보기 누르면 수정 
     const [section, setSection] = useState('');
     const [sectionList, setSectionList] = useState(['전체','뉴스', '질문', 'Debug', 'Study']);
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [hashtag, setHashtag] = useState('');
-    const [hashtagEx, setHashtagEx] = useState('');
+    const [hashtagEx, setHashtagEx] = useState(''); // [예시] 자동완성
     const [link, setLink] = useState('');
     const [photoPopup, setPhotoPopup] = useState(false); // 팝업 설정(닫힌 값, True가 호출되면 팝업 열림)
     const [photoSelect, setPhotoSelect] = useState([]); // 사진 파일 다중 업로드 상태 변수
@@ -32,6 +34,33 @@ const Posting = () => {
         setPhotoPopup(false);
     };
 
+    /* Forum */
+    // 포럼 input 요소에 대한 참조 생성
+    const forumInputRef = useRef(null);
+
+    // 포럼 입력 상태에서 돋보기 아이콘 클릭 시 실행되는 함수
+    const handleSearchIconClick = () => {
+        setEditForum(true); // 수정 상태로 설정
+    // 포럼 input에 포커스를 설정하여 사용자가 직접 입력할 수 있도록 함
+        if (forumInputRef.current) {
+            forumInputRef.current.focus();
+        }
+    };
+
+    // 포럼 입력 상태가 변경될 때 실행되는 함수
+    useEffect(() => {
+        // 포럼 입력 상태가 비활성화되면서 포럼 내용이 변경된 경우
+        if (!editForum && forumInputRef.current && forum !== forumInputRef.current.value) {
+            setForum(forumInputRef.current.value); // 포럼 내용을 업데이트
+        }
+    }, [editForum]);
+
+    // 포럼 입력 상태에서 수정을 완료하고 수정 반영할 때 실행되는 함수
+    const handleEditForumSubmit = () => {
+        setEditForum(false); // 수정 상태 비활성화
+    };
+
+    /* HashTag */
     // [예시] API를 통해 연관 검색어를 가져오는 함수
     const fetchRelatedTags = (input) => {
         fetch(`https://api.example.com/tags?query=${input}`)
@@ -47,6 +76,7 @@ const Posting = () => {
         fetchRelatedTags(inputValue); // 연관 검색어 요청
     };
 
+    /* Photo */
     // 사진 추가 완료 시 실행되는 함수
     const handlePhotoUpload = () => {
         // 선택한 사진을 업로드하는 로직 추가 필요
@@ -69,22 +99,43 @@ const Posting = () => {
         setPhotoPopup(false);
     };
 
-
     return (
         <div className='posting_body'>
             <h1>System.out.println(“”);</h1>
             {/* form(데이터 입력 받기), onSubmit(폼 제출시 실행) */}
-            <form 
-             onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
             <div className="posting_forum">
-            <label 
+            <label
              For="forum">포럼 </label>
-            <input 
-             type="text" 
+            {editForum ? (
+            <span
+             className="searchIconWrapper">
+            <input
+             type="text"
              id="forum"
-             placeholder="Forum" 
-             value={forum} 
-             onChange={e => setForum(e.target.value)} />
+             placeholder="Forum"
+             value={forum}
+             onChange={(e) => setForum(e.target.value)} // 수정된 포럼 내용 반영
+             onBlur={handleEditForumSubmit} // 수정 상태에서 포커스가 빠져나갈 때 수정 반영
+             ref={forumInputRef} // 포럼 input 요소에 대한 참조
+            />
+            <span
+             className="searchIcon" 
+             onClick={handleEditForumSubmit}><SearchIcon /></span>
+            </span>
+            ) : (
+            <span
+             className="searchIconWrapper">
+            <input
+             type="text"
+             value={forum || '포럼을 선택하세요'}
+             readOnly
+            />
+            <span
+             className="searchIcon" 
+             onClick={handleSearchIconClick}><SearchIcon /></span>
+            </span>
+             )}
             </div>
             <div className="posting_section">
             <label 
@@ -111,7 +162,8 @@ const Posting = () => {
              onChange={e => setTitle(e.target.value)} />
             </div>
             <div className="posting_content">
-            <label For="content">내용 </label>
+            <label 
+             For="content">내용 </label>
             <textarea 
              id="content"
              className="posting_content_textarea"
@@ -121,13 +173,16 @@ const Posting = () => {
              onChange={e => setContent(e.target.value)} />
             </div>
             <div className="posting_hashtag">
-            <label For="hashtag">태그 </label>
+            <label 
+             For="hashtag">태그 </label>
             <input 
              type="text" 
              id="hashtag"
              placeholder="Hashtag" 
              value={hashtag} 
-             onChange={handleInputChange} // 입력값이 변경될 때 연관 검색어 요청 함수 호출
+            // 입력값이 변경될 때 연관 검색어 요청 함수 호출
+             onChange={handleInputChange} 
+            
             />
             {/* [예시] 연관 검색어 표시 */}
             {hashtagEx.length > 0 && (
@@ -139,7 +194,8 @@ const Posting = () => {
             )}
             </div>
             <div className="posting_link">
-            <label For="link">링크 </label>
+            <label 
+             For="link">링크 </label>
             <input 
              type="text" 
              id="link"

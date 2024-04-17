@@ -17,7 +17,7 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
 
-// Text-box (Span글자)
+// Text-box
 .posting_forum label,
 .posting_section label,
 .posting_title label,
@@ -42,8 +42,18 @@
   margin-bottom: 10px;
 }
 
+// Text-box 스타일 (포럼만 따로)
+.posting_forum input {
+  width: 15%;
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
 // Text-box 스타일
-.posting_forum input,
 .posting_title input,
 .posting_hashtag input,
 .posting_link input {
