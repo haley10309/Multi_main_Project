@@ -1,0 +1,161 @@
+.home_body {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    width: 100%; /* 화면 너비 전체를 사용 */
+
+    .post-detail {
+        width: 100%;
+        max-width: 100%; /* 최대 너비를 100%로 설정, 필요에 따라 조정 가능 */
+        background: #fff;
+        margin-bottom: 20px;
+
+    .post-card {
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+  
+      .post-header {
+        display: flex;
+        // align-items: center;
+  
+        .post-avatar {
+          width: 40px;
+          height: 40px;
+          background: #ddd;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
+  
+        .post-info {
+        //   flex-grow: 1;
+
+          .post-forumname {
+            font-weight: bold;
+          }
+  
+          .post-nickname {
+            font-weight: bold;
+          }
+          
+        }
+        .post-time {
+            flex-grow: 1;
+            margin-left: 20px;
+            vertical-align: bottom;
+            // Styles for the time
+        }
+  
+        .post-more-options {
+            margin-right: 10px;
+          // Styles for the more options
+        }
+      }
+  
+      .post-content {
+        margin: 10px 0;
+      }
+      .hashtags {
+        color: #555;
+      }
+      .post-image {
+        width: 400px;
+        height: 200px;
+        background: #ddd;
+        margin: 10px 0;
+      }
+  
+      .post-interactions {
+        display: flex;
+        flex-direction: row;
+        // align-items: center;
+        // justify-content: space-between;
+        
+        .post-likes-up {
+            align-items:left;
+            margin-left: 10px;
+        }
+        .post-likes {
+            align-items:left;
+            margin-left: 5px;
+        }
+        .post-likes-down {
+            align-items:left;
+            margin-left: 5px;
+        }
+        .post-comments {
+          display: flex;
+          align-items: center;
+          margin-left: 10px;
+        }
+      }
+    }
+  
+    .comment-input {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 15px;
+      border-bottom: 1px solid #eee;
+  
+      input {
+        flex-grow: 1;
+        margin-right: 10px;
+      }
+  
+      .btn-cancel,
+      .btn-submit {
+        // Styles for the buttons
+      }
+    }
+  
+    .comment-item {
+      display: flex;
+      padding: 10px 15px;
+  
+      .comment-avatar {
+        width: 30px;
+        height: 30px;
+        background: #ddd;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+  
+      .comment-body {
+        flex-grow: 1;
+  
+        .comment-header {
+          display: flex;
+        //   justify-content: space-between;
+          align-items: center;
+  
+          .comment-nickname {
+            font-weight: bold;
+          }
+  
+          .comment-time {
+            margin-left: 20px;
+            // Styles for the time
+          }
+        }
+  
+        .comment-content {
+          margin: 5px 0;
+        }
+  
+        .comment-interactions {
+          display: flex;
+          align-items: center;
+  
+          .comment-likes,
+          .comment-reply {
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+    }
+ }
+}
