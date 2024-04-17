@@ -4,36 +4,62 @@
     background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: space-between;
-    width: 90%;
-    padding: 2%;
+    width: 60%;
+    padding: 0%;
     align-items: center;
 }
 
 .section_single_manu {
     color: rgb(7, 6, 6);
     width: 10%;
+    height: 40%;
     text-decoration-line: none;
-    //background-color: rgb(85, 194, 86);
-    padding: 1%;
+    margin: 2%;
     align-items: center;
+
+
 }
-.section_single_manu2{
-    width: 20%;
-    text-decoration-line: none;
-    //background-color: rgb(85, 194, 86);
-    padding: 1%;
-    align-items: center;
-}
-.na{
+
+
+.section_menu_li {
     color: rgb(7, 6, 6);
     width: 100%;
-    padding: 3%;
+    padding: 0%;
+    align-items: center;
+
 }
-.title_to_Board{
+
+.section_menu_li:hover {
+    background-color: rgb(218, 221, 211);
+}
+
+.section_menu_li:active {
+    background-color: rgb(244, 107, 28);
+}
+
+.title_to_Board {
     text-decoration-line: none;
     color: black;
+}
+
+.title_li {
+    color: rgb(7, 6, 6);
+}
+
+.active {
+    background-color: rgb(218, 221, 211);
+}
+
+.active_menu {
+    background-color: rgb(152, 205, 251);
+    width: 10%;
+    height: 40%;
+    text-decoration-line: none;
+    margin: 2%;
+    align-items: center;
     
 }
-.title_li{
-    color: rgb(7, 6, 6);
+.forum_name{
+    float: left;
+    
 }
