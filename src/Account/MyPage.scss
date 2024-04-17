@@ -3,15 +3,17 @@
     flex-direction: column;
     padding: 20px;
     font-family: 'Arial', sans-serif;
-    width: 100%; /* 화면 너비 전체를 사용 */
+    width: 100%;
+    /* 화면 너비 전체를 사용 */
 
-  
+
     .profile {
         width: 100%;
-        max-width: 100%; /* 최대 너비를 100%로 설정, 필요에 따라 조정 가능 */
+        max-width: 100%;
+        /* 최대 너비를 100%로 설정, 필요에 따라 조정 가능 */
         background: #fff;
         margin-bottom: 20px;
-        
+
         .profile-header {
             display: flex;
             justify-content: space-between;
@@ -32,11 +34,14 @@
             }
 
             .settings-icon {
-                font-size: 1.5em; // Placeholder for settings icon
+                width: 30px;
+                height: 30px;
+                background: #ccc;
+                border-radius: 50%;
             }
         }
 
-        .navigation ul{
+        .navigation ul {
             display: flex;
             justify-content: flex-start;
             background: #f7f7f7;
@@ -45,6 +50,7 @@
             .nav-item {
                 padding: 5px 10px;
                 cursor: pointer;
+
                 &.active {
                     background-color: yellow;
                 }
@@ -101,6 +107,7 @@
         }
     }
 }
+
 input {
     width: 200px;
-  }
+}

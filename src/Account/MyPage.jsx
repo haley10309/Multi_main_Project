@@ -1,83 +1,119 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import './MyPage.scss';
+import "./MyPage.scss";
+// written by owen 2024/04/17
 
-const MyPage = ({ userId }) => {
+const MyPage = ({ userId, opponentId }) => {
   const [profile, setProfile] = useState({
-    followerCount: 0,
-    followingCount: 0,
-    postCount: 0,
-    commentCount: 0,
-    likeReceivedCount: 0,
+    user_id: 0,
+    follower_count: 0,
+    following_count: 0,
+    board_count: 0,
+    comment_count: 0,
+    likes_Count: 0,
+    img_path: "",
   });
-  useEffect(() => {
-    axios
-      .get(`/profile/${userId}`)
-      .then((response) => {
-        setProfile(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the profile data:", error);
-      });
-  }, [userId]);
-  
+  // const [opponentId, setOpponentId] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-    return (
-        <div className='home_body'>
-        <div className="profile">
-                <div className="profile-header">
-                    <div className="avatar"></div>
-                    <div className="nickname">Nickname</div>
-                    <div className="settings-icon"></div>
-                </div>
-                <table>
-            <thead>
-              <tr>
-                <td>{profile.followerCount}</td>
-                <td>{profile.followingCount}</td>
-                <td>{profile.postCount}</td>
-                <td>{profile.commentCount}</td>
-                <td>{profile.likeReceivedCount}</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>팔로워 수</th>
-                <th>팔로잉 수</th>
-                <th>게시글 수</th>
-                <th>작성한 댓글 수</th>
-                <th>공감 받은 수</th>
-              </tr>
-            </tbody>
-          </table>
-                <nav className="navigation">
-                    <ul>
-                        <div className="nav-item active">내 게시물</div>
-                        <div className="nav-item">내가 쓴 댓글</div>
-                        <div className="nav-item">좋아요 한 게시물</div>
-                        <div className="nav-item">저장한 게시물</div>
-                    </ul>
-                </nav>
-                <div className="content">
-                    <div className="post-card">
-                        <div className="post-avatar"></div>
-                        <div className="post-details">
-                            <div className="post-nickname">Nickname</div>
-                            <div className="post-content">Contents</div>
-                            <div className="post-image"></div>
-                            <div className="post-interactions">
-                                <div className="hashtags"> #hashtags </div>
-                                <div className="likes"> 👍 3.2K </div>
-                                <div className="comments"> 💬 </div>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Repeat the .post-card for each post */}
-                </div>
+  // 프로필 정보 가져오는 api
+  const getProfile = async () => {
+    try {
+      // 요청 시작
+      setError(null);
+      setLoading(true);
+      const response = await axios
+        .get("profile", {
+          params: {
+            user_id: userId,
+            opponent_id: opponentId,
+          },
+        })
+        .then((response) => {
+          setProfile(response.data);
+        });
+    } catch (e) {
+      console.error("There was an error fetching the profile data:", error);
+      setError(e);
+    } finally {
+      // 요청이 끝나면 로딩 상태를 false로 변경
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    getProfile();
+  }, profile);
+
+  return (
+    <div className="home_body">
+      <div className="profile">
+        <div className="profile-header">
+          <div className="avatar">
+            <img src={profile.img_path} alt="프로필 이미지" />
+          </div>
+          <div className="nickname">Nickname</div>
+          {/* userId와 opponentId 비교를 통한 조건부 렌더링 */}
+          {userId === opponentId ? (
+            <button>팔로우</button>
+          ) : (
+            <div className="settings-icon"></div>
+          )}
+        </div>
+        <table>
+          <thead>
+            <tr>
+              {/* 서버 연결 후 바꾸기
+                <td>{profile.user.follower_count}</td>
+                <td>{profile.user.following_count}</td>
+                <td>{profile.user.board_ount}</td>
+                <td>{profile.user.comment_count}</td>
+                <td>{profile.user.likes_count}</td> */}
+              <td>{profile.user?.follower_count || 0}</td>
+              <td>{profile.user?.following_count || 0}</td>
+              <td>{profile.user?.board_count || 0}</td>
+              <td>{profile.user?.comment_count || 0}</td>
+              <td>{profile.user?.likes_count || 0}</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>팔로워 수</th>
+              <th>팔로잉 수</th>
+              <th>게시글 수</th>
+              <th>작성한 댓글 수</th>
+              <th>공감 받은 수</th>
+            </tr>
+          </tbody>
+        </table>
+        <nav className="navigation">
+          <ul>
+            <div className="nav-item active">내 게시물</div>
+            <div className="nav-item">내가 쓴 댓글</div>
+            <div className="nav-item">좋아요 한 게시물</div>
+            <div className="nav-item">저장한 게시물</div>
+          </ul>
+        </nav>
+        <div className="content">
+          <div className="post-card">
+            <div className="post-avatar"></div>
+            <div className="post-details">
+              <div className="post-nickname">Nickname</div>
+              <div className="post-content">Contents</div>
+              <div className="post-image"></div>
+              <div className="post-interactions">
+                <div className="hashtags"> #hashtags </div>
+                <div className="likes"> 👍 3.2K </div>
+                <div className="comments"> 💬 </div>
+              </div>
             </div>
+          </div>
+          {/* Repeat the .post-card for each post */}
+        </div>
+      </div>
     </div>
-    );
-}
+  );
+};
 
 export default MyPage;
