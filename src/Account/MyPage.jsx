@@ -1,7 +1,28 @@
-import React from 'react';
-import './Account.scss';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 
-function MyPage(props) {
+import './MyPage.scss';
+
+const MyPage = ({ userId }) => {
+  const [profile, setProfile] = useState({
+    followerCount: 0,
+    followingCount: 0,
+    postCount: 0,
+    commentCount: 0,
+    likeReceivedCount: 0,
+  });
+  useEffect(() => {
+    axios
+      .get(`/profile/${userId}`)
+      .then((response) => {
+        setProfile(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the profile data:", error);
+      });
+  }, [userId]);
+  
+
     return (
         <div className='home_body'>
         <div className="profile">
@@ -10,6 +31,26 @@ function MyPage(props) {
                     <div className="nickname">Nickname</div>
                     <div className="settings-icon"></div>
                 </div>
+                <table>
+            <thead>
+              <tr>
+                <td>{profile.followerCount}</td>
+                <td>{profile.followingCount}</td>
+                <td>{profile.postCount}</td>
+                <td>{profile.commentCount}</td>
+                <td>{profile.likeReceivedCount}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>팔로워 수</th>
+                <th>팔로잉 수</th>
+                <th>게시글 수</th>
+                <th>작성한 댓글 수</th>
+                <th>공감 받은 수</th>
+              </tr>
+            </tbody>
+          </table>
                 <nav className="navigation">
                     <ul>
                         <div className="nav-item active">내 게시물</div>
