@@ -4,7 +4,7 @@ import axios from 'axios';
 import { AiFillEye } from 'react-icons/ai';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
-import './Join.scss';
+import './Join_Login.scss';
 
 const Join = () => {
   const navigate = useNavigate();
@@ -13,16 +13,22 @@ const Join = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [nickName, setNickName] = useState('');
+  const [name, setName] = useState('');
+  const [birth, setBirth] = useState('');
   //오류 메시지
   const [emailMessage, setEmailMessage] = useState('');
   const [passwordMessage, setPasswordMessage] = useState('');
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('');
   const [nickNameMessage, setNickNameMessage] = useState('');
+  const [nameMessage, setNameMessage] = useState('');
+  const [birthMessage, setBirthMessage] = useState('');
   //유효성 검사
   const [isEmail, setIsEmail] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
   const [isNickNmae, setIsNickName] = useState(false);
+  const [isName, setIsName] = useState(false);
+  const [isBirth, setIsBirth] = useState(false);
   //비밀번호 표시
   const [showPassword, setShowPassword] = useState({
     type: 'password',
@@ -48,6 +54,11 @@ const Join = () => {
       setEmailMessage('사용 가능한 이메일 입니다');
       setIsEmail(true);
     }
+  };
+
+  const onChangeName = (e) => {
+    const currentName = e.target.value;
+    setName(currentName);
   };
 
   const onChangePassword = (e) => {
@@ -95,7 +106,11 @@ const Join = () => {
       setIsNickName(true);
     }
   };
-
+  //생년월일
+  const onChangeBirth = (e) => {
+    const dateClick = e.target.value;
+    setBirth(dateClick);
+  };
   //비밀번호 표시 핸들러
   const handleShowPassword = (e) => {
     setShowPassword(function () {
@@ -117,9 +132,24 @@ const Join = () => {
     });
   };
   //이메일 중복 확인 핸들러
-  const handleEmailCheck = (e) => {
+  const handleEmailCheck = async (e) => {
     e.preventDefault();
+    await axios
+      .post('url', {
+        user_email: 'email',
+      })
+      .then((response) => {
+        if (response !== null) {
+          alert('중복된 이메일 입니다');
+        } else {
+          alert('통과');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+
   //회원가입 정보 보내기 핸들러
   const handleJoin = (e) => {
     e.preventDefault();
@@ -127,8 +157,10 @@ const Join = () => {
       axios
         .post('url', {
           user_email: 'email',
+          user_name: 'name',
           password: 'password',
           nickname: 'nickName',
+          dateOfBirth: 'birth',
         })
         .then((response) => {
           console.log(response);
@@ -145,7 +177,7 @@ const Join = () => {
 
   //HTML
   return (
-    <div>
+    <div className="wrap">
       <h1>회원가입</h1>
       <form className="join-form" action="">
         <div className="form-list">
@@ -159,8 +191,22 @@ const Join = () => {
             placeholder="이메일을 입력해주세요"
             onChange={onChangeEmail}
           />
-          <button className="email-button">중복확인</button>
+          <button className="email-button" onClick={handleEmailCheck}>
+            중복확인
+          </button>
           <p className="message">{emailMessage}</p>
+        </div>
+        <div className="form-list">
+          <label htmlFor="name">Name</label>
+          <br />
+          <input
+            type="text"
+            placeholder="이름을 입력하세요"
+            value={name}
+            id="name"
+            onChange={onChangeName}
+          />
+          <p></p>
         </div>
         <div className="form-list">
           <label htmlFor="nickName">Nick Name</label> <br />
@@ -207,7 +253,17 @@ const Join = () => {
           </span>
           <p className="message">{passwordConfirmMessage}</p>
         </div>
-        <button className="join-button" onclick={handleJoin}>
+        <div className="form-list">
+          <label htmlFor="birth">생년월일</label> <br />
+          <input
+            type="date"
+            id="birth"
+            value={birth}
+            onChange={onChangeBirth}
+          />
+          <p></p>
+        </div>
+        <button className="join-button" onClick={handleJoin}>
           회원가입
         </button>
       </form>

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Account.scss';
+import './Join_Login.scss';
 
 function Login(props) {
-  const [useraccount, setUseraccount] = useState("");
-  const [password, setPassword] = useState("");
-  const [msg, setMsg] = useState("");
+  const [useraccount, setUseraccount] = useState('');
+  const [password, setPassword] = useState('');
+  const [msg, setMsg] = useState('');
   const navigate = useNavigate();
 
   const onIDhandler = (event) => {
@@ -38,16 +38,16 @@ function Login(props) {
     //   if (res.data.code === 404) {
     //     setMsg("로그인 실패");
     //   }
-      
+
     // });
   };
 
   return (
-    <div className='home_body'>
+    <div className="home_body">
       <h1>로그인</h1>
       <form onSubmit={LoginFunc}>
         <div className="ID_form_align">
-          <label htmlFor="id">   ID: </label>
+          <label htmlFor="id"> ID: </label>
           <input type="text" id="id" onChange={onIDhandler} />
         </div>
         <br />
@@ -56,7 +56,9 @@ function Login(props) {
           <input type="password" onChange={onPwhandler} />
         </div>
         <br />
-        <button className="Login_button" type="submit">로그인</button>
+        <button className="Login_button" type="submit">
+          로그인
+        </button>
         <br />
         {msg}
       </form>
