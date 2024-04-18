@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+import { MdSettings } from 'react-icons/md'; // 설정 아이콘
 import axios from "axios";
 
 import "./MyPage.scss";
 // written by owen 2024/04/17
 
-const MyPage = ({ userId, opponentId }) => {
+const MyPage = ({ user_id, opponent_id }) => {
   const [profile, setProfile] = useState({
     user_id: 0,
     follower_count: 0,
     following_count: 0,
     board_count: 0,
+    
     comment_count: 0,
-    likes_Count: 0,
+    likes_count: 0,
     img_path: "",
   });
   // const [opponentId, setOpponentId] = useState(0);
@@ -27,8 +30,8 @@ const MyPage = ({ userId, opponentId }) => {
       const response = await axios
         .get("profile", {
           params: {
-            user_id: userId,
-            opponent_id: opponentId,
+            user_id: user_id,
+            opponent_id: opponent_id,
           },
         })
         .then((response) => {
@@ -42,6 +45,13 @@ const MyPage = ({ userId, opponentId }) => {
       setLoading(false);
     }
   };
+
+  //settings 아이콘 클릭 시 이동
+  let navigate = useNavigate();
+  const settingsClick = () => {
+    navigate('Profile_Settings');
+  }
+  
   useEffect(() => {
     getProfile();
   }, profile);
@@ -50,15 +60,17 @@ const MyPage = ({ userId, opponentId }) => {
     <div className="home_body">
       <div className="profile">
         <div className="profile-header">
-          <div className="avatar">
-            <img src={profile.img_path} alt="프로필 이미지" />
-          </div>
+          <figure className="avatar">
+            <img src={profile.img_path} alt="" />
+          </figure>
           <div className="nickname">Nickname</div>
           {/* userId와 opponentId 비교를 통한 조건부 렌더링 */}
-          {userId === opponentId ? (
-            <button>팔로우</button>
+          {user_id === opponent_id ? (
+            <div className="settings-icon" onClick={settingsClick}>
+              <MdSettings size="35px"/>
+            </div>
           ) : (
-            <div className="settings-icon"></div>
+            <button>팔로우</button>
           )}
         </div>
         <table>
