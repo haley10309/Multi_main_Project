@@ -66,9 +66,9 @@ const MyPage = ({ user_id, opponent_id }) => {
           <div className="nickname">Nickname</div>
           {/* userId와 opponentId 비교를 통한 조건부 렌더링 */}
           {user_id === opponent_id ? (
-            <div className="settings-icon" onClick={settingsClick}>
+            <button className="settings-icon" onClick={settingsClick}>
               <MdSettings size="35px"/>
-            </div>
+            </button>
           ) : (
             <button>팔로우</button>
           )}
