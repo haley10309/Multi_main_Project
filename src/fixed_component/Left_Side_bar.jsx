@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Side_bar.scss";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 import {
   Table,
@@ -14,6 +15,7 @@ import {
 } from "@mui/material";
 
 const Left_Side_bar = () => {
+
   const [recentArr, setRecentArr] = useState([]); // Recent forum names
 
   const addItem = (new_recent_forum) => {
@@ -25,7 +27,6 @@ const Left_Side_bar = () => {
       }
       const newItem = new_recent_forum;
       // 새 배열 생성 (기존 배열 복사 + 새 항목 추가)
-      //const updatedArray = [...recentArr, newItem];
       const updatedArray = [newItem,...recentArr];
       setRecentArr(updatedArray);
     }

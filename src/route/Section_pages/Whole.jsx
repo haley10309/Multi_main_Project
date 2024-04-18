@@ -1,27 +1,78 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import Forum_page from "../Forum_page";
-import "../Forum_page.scss";
+import Forum_page from "./Forum_page";
+import "./Forum_page.scss";
+import "../Home.scss";
 import DropDown from "../DropDown";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 //import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import MessageIcon from "@mui/icons-material/Message";
+import axios from 'axios';
 
 const Whole = () => {
   const [view, setView] = useState(false);
+  const [board, setBoard] = useState([]);
   //const forumName = "하영"; // Replace with your forum name data
   const location = useLocation();
   const forumName = location.state.forum_name;
+  useEffect(() => {
+    axios.get('/board',{
+      "forum_id" : 1234,
+      "section_id" : 1234
+      })
+      .then(response => {
+        console.log(response);
+        setBoard(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching (whole)board info:', error);
+      });
+  }, []);
 
   return (
     <div className="home_body">
-      <Forum_page/>
+      <Forum_page />
       <div className="section_navigation_bar">
-        <Link className="active_menu" activeClassName="active" to={'../Forum_page/Whole'} state={{forum_name:forumName}}><li className="section_menu_li">전체</li></Link>
-        <Link className="section_single_manu" activeClassName="active" to={'../Forum_page/News'} state={{forum_name:forumName}}><li className="section_menu_li">뉴스</li></Link>
-        <Link className="section_single_manu" activeClassName="active" to={'../Forum_page/question'} state={{forum_name:forumName}}><li className="section_menu_li">질문</li></Link>
-        <Link className="section_single_manu" activeClassName="active" to={'../Forum_page/Debug'} state={{forum_name:forumName}}><li className="section_menu_li">Debug</li></Link>
-        <Link className="section_single_manu" activeClassName="active"to={'../Forum_page/Study'} state={{forum_name:forumName}}><li className="section_menu_li">Study</li></Link>
+        <Link
+          className="active_menu"
+          activeClassName="active"
+          to={"../Forum_page/Whole"}
+          state={{ forum_name: forumName }}
+        >
+          <li className="section_menu_li">전체</li>
+        </Link>
+        <Link
+          className="section_single_manu"
+          activeClassName="active"
+          to={"../Forum_page/News"}
+          state={{ forum_name: forumName }}
+        >
+          <li className="section_menu_li">뉴스</li>
+        </Link>
+        <Link
+          className="section_single_manu"
+          activeClassName="active"
+          to={"../Forum_page/question"}
+          state={{ forum_name: forumName }}
+        >
+          <li className="section_menu_li">질문</li>
+        </Link>
+        <Link
+          className="section_single_manu"
+          activeClassName="active"
+          to={"../Forum_page/Debug"}
+          state={{ forum_name: forumName }}
+        >
+          <li className="section_menu_li">Debug</li>
+        </Link>
+        <Link
+          className="section_single_manu"
+          activeClassName="active"
+          to={"../Forum_page/Study"}
+          state={{ forum_name: forumName }}
+        >
+          <li className="section_menu_li">Study</li>
+        </Link>
       </div>
       <div className="order_menu">
         <ul
@@ -48,17 +99,19 @@ const Whole = () => {
           <li className="upload_time">create date</li>
         </div>
         <div className="title_div">
-          <div className="board_title">
-            <div>
+          <div className="board_title_and_likes">
+            <div className="board_title">
               <Link
                 className="title_to_Board"
                 to={"/Board_Detail"}
                 state={{ forum_name: forumName }}
               >
-                <li className="title_li">하영{forumName}</li>
+                <li className="title_li">
+                  하영 sdfasdfasdfasdfasdfasdfasdfasdfsdsdsdfasdfasdfasdfasdfasdfasdfasdfsdsdsdfasdfasdfasdfasdfasdfasdfasdfsdsd
+                  {forumName}
+                </li>
               </Link>
             </div>
-
             <div className="likes_and_comment">
               <ThumbUpIcon />
               like_count
@@ -66,7 +119,6 @@ const Whole = () => {
               comment_count
             </div>
           </div>
-
           <img
             src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYLJauBsuuhYaRAYccQZ2d-UtBTCOgsHMQmw&s`}
             className="img_post"

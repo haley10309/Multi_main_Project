@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { MdSettings } from 'react-icons/md'; // 설정 아이콘
 import axios from "axios";
+import './Profile_Settings.scss';
 
 const Profile_Settings = () => {
     // 상태 관리를 위한 useState 훅 사용

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 //import "./Home.scss";
 import "./Forum_page.scss";
 import { Link, useNavigate,useLocation } from "react-router-dom";
-import DropDown from "./DropDown";
+import DropDown from "../DropDown";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import MessageIcon from "@mui/icons-material/Message";

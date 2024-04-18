@@ -4,6 +4,7 @@
     background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: space-between;
+    max-width:60%;
     width: 60%;
     padding: 0%;
     align-items: center;
@@ -23,6 +24,7 @@
 
 .section_menu_li {
     color: rgb(7, 6, 6);
+    max-width:100%;
     width: 100%;
     padding: 0%;
     align-items: center;
@@ -44,7 +46,10 @@
 
 .title_li {
     color: rgb(7, 6, 6);
+    overflow-wrap: break-word; // Allow word breaks within the text
+    max-width: 100%; // Set the maximum width to prevent overflow
 }
+
 
 .active {
     background-color: rgb(218, 221, 211);

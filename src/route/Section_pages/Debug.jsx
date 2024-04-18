@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Forum_page from "../Forum_page";
-import "../Forum_page.scss";
+import Forum_page from "./Forum_page";
+import "./Forum_page.scss";
 import { Link, useLocation } from "react-router-dom";
 
 import DropDown from "../DropDown";
