@@ -55,7 +55,6 @@
 
 // Text-box 스타일
 .posting_title input,
-.posting_hashtag input,
 .posting_link input {
   width: 75%;
   padding: 7px;
@@ -89,7 +88,45 @@
     font-family: Arial, sans-serif;
     padding: 0.5%;
     vertical-align: top;
+}
+
+// Text-box 스타일 (태그 Hashtag따로)
+.posting_hashtag input {
+  width: 75%;
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin-left: 3.5px; 
+}
+
+// 해시태그 입력란
+.posting_hashtag {
+  
+  // hashtag - 연관 해시태그
+  .hashtag_related {
+    list-style-type: none;
+    padding-left: 8%;
+    display: flex;
+    flex-wrap: wrap;
   }
+
+  li {
+    background-color:  #12e695;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+
+    &:hover {
+      background-color: #eeff00;
+    }
+  }
+}
 
 // Button - 사진 업로드
   .posting_Photo button {
