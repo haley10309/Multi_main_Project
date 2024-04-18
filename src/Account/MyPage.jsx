@@ -49,7 +49,7 @@ const MyPage = ({ user_id, opponent_id }) => {
   //settings 아이콘 클릭 시 이동
   let navigate = useNavigate();
   const settingsClick = () => {
-    navigate('Profile_Settings');
+    navigate('/MyPage/Profile_Settings');
   }
   
   useEffect(() => {

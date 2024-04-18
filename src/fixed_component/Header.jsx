@@ -17,7 +17,6 @@ const Header = () => {
     if (e.key === "Enter") {
       //enter키를 눌렀을 때 동작할 코드
       navigate('/Search', { state: { search_keyword: search_word } });
-
     }
   };
   return (
