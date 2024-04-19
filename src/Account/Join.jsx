@@ -179,8 +179,8 @@ const Join = () => {
   return (
     <div className="wrap">
       <h1>회원가입</h1>
-      <form className="join-form" action="">
-        <div className="form-list">
+      <form className="join_form" action="">
+        <div className="form_list">
           <label htmlFor="email">E-mail</label>
           <br />
           <input
@@ -191,12 +191,12 @@ const Join = () => {
             placeholder="이메일을 입력해주세요"
             onChange={onChangeEmail}
           />
-          <button className="email-button" onClick={handleEmailCheck}>
+          <button className="email_button" onClick={handleEmailCheck}>
             중복확인
           </button>
           <p className="message">{emailMessage}</p>
         </div>
-        <div className="form-list">
+        <div className="form_list">
           <label htmlFor="name">Name</label>
           <br />
           <input
@@ -208,7 +208,7 @@ const Join = () => {
           />
           <p></p>
         </div>
-        <div className="form-list">
+        <div className="form_list">
           <label htmlFor="nickName">Nick Name</label> <br />
           <input
             id="nickName"
@@ -219,7 +219,7 @@ const Join = () => {
           />
           <p className="message">{nickNameMessage}</p>
         </div>
-        <div className="form-list">
+        <div className="form_list">
           <label htmlFor="password">Password</label> <br />
           <input
             type={showPassword.type}
@@ -229,12 +229,12 @@ const Join = () => {
             placeholder="비밀번호를 입력해주세요"
             onChange={onChangePassword}
           />
-          <span onClick={handleShowPassword} className="visible-icon">
+          <span onClick={handleShowPassword} className="visible_icon">
             {showPassword.visible ? <AiFillEye /> : <AiFillEyeInvisible />}
           </span>
           <p className="message">{passwordMessage}</p>
         </div>
-        <div className="form-list">
+        <div className="form_list">
           <label htmlFor="passwordConfirm">Password Confirm</label> <br />
           <input
             type={showPasswordConfirm.type}
@@ -244,7 +244,7 @@ const Join = () => {
             placeholder="비밀번호를 다시 입력해주세요"
             onChange={onChangePasswordConfirm}
           />
-          <span onClick={handleShowPasswordConfirm} className="visible-icon">
+          <span onClick={handleShowPasswordConfirm} className="visible_icon">
             {showPasswordConfirm.visible ? (
               <AiFillEye />
             ) : (
@@ -253,7 +253,7 @@ const Join = () => {
           </span>
           <p className="message">{passwordConfirmMessage}</p>
         </div>
-        <div className="form-list">
+        <div className="form_list">
           <label htmlFor="birth">생년월일</label> <br />
           <input
             type="date"
@@ -263,7 +263,7 @@ const Join = () => {
           />
           <p></p>
         </div>
-        <button className="join-button" onClick={handleJoin}>
+        <button className="join_button" onClick={handleJoin}>
           회원가입
         </button>
       </form>
