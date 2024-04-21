@@ -43,8 +43,8 @@ function Login(props) {
   };
 
   return (
-    <div className="home_body">
-      <h1>로그인</h1>
+    <div className="login_body">
+      <h1>DevOz</h1>
       <form onSubmit={LoginFunc}>
         <div className="ID_form_align">
           <label htmlFor="id"> ID: </label>

@@ -1,6 +1,182 @@
-input {
-  width: 200px;
-}
+// input {
+//   width: 200px;
+// }
 p {
   color: red;
+}
+
+.login_body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  padding: 20px;
+  width: 100%; 
+
+  h1 {
+    color: #5d7096;
+    margin-bottom: 30px;
+  }
+
+  form {
+    background: #34495e;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+
+    .ID_form_align,
+    .PW_form_align {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+
+      label {
+        margin-bottom: 5px;
+        color: #bdc3c7; 
+      }
+
+      input {
+        padding: 10px;
+        border: 1px solid #95a5a6; 
+        background-color: #ecf0f1; 
+        border-radius: 4px;
+        font-size: 16px;
+        color: #2c3e50; 
+        
+
+        &:focus {
+          outline: none;
+          border-color: #7f8c8d; 
+        }
+      }
+    }
+
+    .Login_button {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 4px;
+      background: #16a085; 
+      color: #ecf0f1; 
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+
+      &:hover {
+        background-color: #1abc9c; 
+        color: #2c3e50; 
+      }
+    }
+
+    .msg {
+      color: #e74c3c; 
+      text-align: center;
+      margin-top: 20px;
+    }
+  }
+}
+
+
+//조인
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  // background: #4A5D73; 
+  color: #E0E1DD; 
+  font-family: 'Arial', sans-serif;
+  width: 100%; 
+
+  h1 {
+    color: #5d7096; 
+    margin-bottom: 2rem;
+  }
+
+  .join_form {
+    background: #34495e;
+    // background: #7C90A0; 
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+
+    .form_list {
+      margin-bottom: 1.5rem;
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      input {
+        width: calc(100% - 2rem);
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+        border: 1px solid #5E7480; 
+        border-radius: 4px;
+        font-size: 1rem;
+        color: #0D1B2A; 
+
+        &:focus {
+          outline: none;
+          border-color: #354259; 
+        }
+
+        &::placeholder {
+          color: #B9C6D3; 
+        }
+
+        &[type="date"] {
+          color: #354259;
+        }
+      }
+
+      .email_button{
+        padding: 0.5rem 1rem;
+        background: #354259; 
+        color: #E0E1DD; 
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+
+        &:hover {
+          background: #5E7480; 
+        }
+      }
+
+      .join_button{
+        padding: 0.5rem 1rem;
+        background: #16a085; 
+        color: #E0E1DD; 
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+
+        &:hover {
+          background: #5E7480; 
+        }
+
+      }
+
+      .visible_icon {
+        margin-left: 0.5rem;
+        color: #E0E1DD; 
+        cursor: pointer;
+      }
+
+      .message {
+        color: #E0E1DD; 
+        font-size: 0.85rem;
+      }
+    }
+  }
 }

@@ -136,7 +136,7 @@
     border-radius: 5px;
     padding: 7px 15px;
     cursor: pointer;
-  }
+}
 
 // Photo - 사진 업로드 팝업 (왜 뜨는거지?)
 .photo_popup {
@@ -148,26 +148,26 @@
     padding: 20px;
     border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+}
   
   .photo_popup h2 {
     margin-top: 0;
-  }
+}
 
   .photo_popup button {
     margin-right: 10px;
-  }
+}
   
   .photo_popup button:last-child {
     margin-right: 0;
-  }
+}
 
 // Button - Cancel, Post
   .posting_buttons {
     display: flex;
     justify-content: flex-end;
     margin-right: 15%;
-  }
+}
   
 // Button - Cancel, Post 위치
   .posting_buttons button {
@@ -175,17 +175,22 @@
     border-radius: 5px;
     padding: 7px 15px;
     cursor: pointer;
-  }
+}
   
 // Button - Cancel 스타일
   .posting_buttons button[type="button"] {
     background-color: #dc3545;
     color: #fff;
     margin-right: 1%;
-  }
+}
   
 // Button - Post 스타일
   .posting_buttons button[type="submit"] {
     background-color: #28a745;
     color: #fff;
-  }
+}
+
+// SearchIcon 통통한손
+  .searchIconWrapper {
+    cursor: pointer;
+}
