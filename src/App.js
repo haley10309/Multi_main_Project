@@ -18,7 +18,6 @@ import Study from "./route/Section_pages/Study";
 import Search from "./route/Search";
 import Profile_Settings from "./Account/Profile_Settings";
 import Admin_Left_Side_bar from "./administrator/Admin_Left_Side_bar";
-import admin_haeder from "./administrator/admin_haeder";
 import Inquiry from "./administrator/Inquiry";
 import Manage_category from "./administrator/Manage_category";
 import Manage_member from "./administrator/Manage_member";
