@@ -15,6 +15,8 @@ const Join = () => {
   const [nickName, setNickName] = useState('');
   const [name, setName] = useState('');
   const [birth, setBirth] = useState('');
+  let today = new Date();
+  let birthMax = today.toISOString().substring(0, 10);
   //오류 메시지
   const [emailMessage, setEmailMessage] = useState('');
   const [passwordMessage, setPasswordMessage] = useState('');
@@ -260,6 +262,7 @@ const Join = () => {
             id="birth"
             value={birth}
             onChange={onChangeBirth}
+            max={birthMax}
           />
           <p></p>
         </div>
