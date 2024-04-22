@@ -51,7 +51,7 @@ class App extends Component {
           <Route path="/Forum_page/Study" element={<Study/>}/>
 
           <Route path="/admin/Inquiry" element={<Inquiry/>}/>
-          <Route path="/admin/Manage_category" element={<Manage_forum/>}/>
+          <Route path="/admin/Manage_forum" element={<Manage_forum/>}/>
           <Route path="/admin/Manage_member" element={<Manage_member/>}/>
           <Route path="/admin/Report" element={<Report/>}/>
           
