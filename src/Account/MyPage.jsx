@@ -86,7 +86,7 @@ const MyPage = ({ user_id, opponent_id }) => {
               <td>{profile.user?.following_count || 0}</td>
               <td>{profile.user?.board_count || 0}</td>
               <td>{profile.user?.comment_count || 0}</td>
-              {/* <td>{profile.user?.likes_count || 0}</td> */}
+              <td>{profile.user?.likes_count || 0}</td>
             </tr>
           </thead>
           <tbody>
@@ -95,7 +95,7 @@ const MyPage = ({ user_id, opponent_id }) => {
               <th>팔로잉 수</th>
               <th>게시글 수</th>
               <th>작성한 댓글 수</th>
-              {/* <th>공감 받은 수</th> */}
+              <th>공감 받은 수</th>
             </tr>
           </tbody>
         </table>

@@ -7,8 +7,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
 
 const Posting = () => {
-//  const SERVER_URL = 'http://localhost:3000'; // 서버 주소
-//  const { forum_select } = useParams(); // 선택
     // 상태 변수 설정
     const [forum, setForum] = useState('');
     const [forum_edit, setForum_edit] = useState(false); //Forum 옆 돋보기 누르면 수정 
@@ -16,9 +14,9 @@ const Posting = () => {
     const [section_list, setSection_list] = useState(['전체','뉴스', '질문', 'Debug', 'Study']);
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [hashtag, setHashtag] = useState('');
-    const [hashtag_Ex, setHashtag_Ex] = useState([]); // 해시태그 자동완성
-    const [hashtag_list, setHashtag_list] = useState([]); // 해시태그 목록을 배열로 저장
+    const [hashtag_ex, setHashtag_ex] = useState(['react', 'javascript', 'programming', 'webdevelopment', 'coding', 'frontend', 'backend', 'java']);
+    const [hashtag_input, setHashtag_input] = useState(''); // 해시태그 입력값 상태
+    const [hashtag_select, setHashtag_select] = useState([]); // 선택된 해시태그 목록 상태
     const [link, setLink] = useState('');
     const [photoPopup, setPhotoPopup] = useState(false); // 팝업 설정(닫힌 값, True가 호출되면 팝업 열림)
     const [photoSelect, setPhotoSelect] = useState([]); // 사진 파일 다중 업로드 상태 변수
@@ -33,9 +31,9 @@ const Posting = () => {
         setSection('');
         setTitle('');
         setContent('');
-        setHashtag('');
-        setHashtag_Ex([]);
-        setHashtag_list([]);
+        setHashtag_input('');
+        setHashtag_ex([]);
+        setHashtag_select([]);
         setLink('');
         setPhotoPopup(false);
     };
@@ -70,9 +68,9 @@ const Posting = () => {
     /* HashTag */  
     // 입력값과 유사한 해시태그를 반환하는 함수
     const fetchHashtagRelated = (input) => {
-    const hashtag_sample = ['react', 'javascript', 'programming', 'webdevelopment', 'coding', 'frontend', 'backend'];
+    const hashtag_sample = ['react', 'javascript', 'programming', 'webdevelopment', 'coding', 'frontend', 'backend', 'java'];
     const hashtag_related = hashtag_sample.filter(tag => tag.includes(input)); // 입력값과 유사한 해시태그를 찾음
-        setHashtag_Ex(hashtag_related); // 상태 업데이트
+        setHashtag_ex(hashtag_related); // 상태 업데이트
 /*   // [예시] API를 통해 연관 검색어를 가져오는 함수
         fetch(`https://api.example.com/tags?query=${input}`)
             .then(response => response.json())
@@ -83,60 +81,67 @@ const Posting = () => {
     // 입력란에 값이 변경될 때 호출되는 함수
     const handleInputChange = (e) => {
     const inputValue = e.target.value;
-        setHashtag(inputValue); // 입력값 업데이트
-        // 콤마를 기준으로 입력값을 분리하여 배열에 저장 (다중선택)
-        const hashtagsArray = inputValue.split(',').map(tag => tag.trim());
-        setHashtag_list(hashtagsArray); // 해시태그 배열 업데이트
-        fetchHashtagRelated(inputValue); // 연관 검색어 요청
+        setHashtag_input(inputValue); // 입력 상자 업데이트
+
+     // 입력 값에 따라 제안 목록 필터링
+    const filteredHashtags = hashtag_ex.filter(tag =>
+        tag.toLowerCase().includes(inputValue.toLowerCase()));
+        setHashtag_ex(filteredHashtags);
+
+        // 입력값이 변경될 때마다 유사한 해시태그를 가져오도록 함
+        fetchHashtagRelated(inputValue);
     };
 
-    // 클릭한 해시태그를 선택하고, 연관 검색어를 초기화하는 함수
-    const handleHashtagClick = (tag) => {
-        setHashtag(tag); // 클릭한 해시태그를 선택
-        setHashtag_Ex(''); // 선택한 해시태그 후 연관 검색어 초기화
-    };
+    // 클릭한 해시태그를 선택하고, 입력란 안으로 추가하는 함수
+    const handleHashtagClick = (tagText) => {
+    // 이미 선택된 해시태그인지 확인
+    if (!hashtag_select.some(tag => tag.text === tagText)) {
+        // 새로 클릭한 해시태그를 추가
+        const newTag = { id: Date.now(), text: tagText }; // 고유한 식별자와 텍스트를 가진 해시태그 객체 생성
+        const updatedHashtags = [...hashtag_select, newTag];
+        setHashtag_select(updatedHashtags); // 선택된 해시태그 목록 업데이트
 
-    // 해시태그 추가 함수
-    const hashtag_add = () => {
-    if (hashtag.trim() !== '') {
-        setHashtag_list([...hashtag_list, hashtag]); // 새로운 해시태그를 배열에 추가
-        setHashtag(''); // 입력란 초기화
+        // 입력 상자를 업데이트하여 선택된 해시태그를 추가
+        const updatedInput = updatedHashtags.map(tag => tag.text).join(', '); // 쉼표와 공백을 사용하여 해시태그들을 연결
+        setHashtag_input(updatedInput);
         }
     };
 
-    // 해시태그 삭제 함수
-    const hashtag_remove = (tag) => {
-    const newList = hashtag_list.filter(item => item !== tag); // 선택한 해시태그를 제외한 새로운 배열 생성
-    setHashtag_list(newList); // 변경된 배열로 해시태그 목록 업데이트
+
+    // Enter 키를 눌렀을 때 선택된 해시태그 목록에 추가하는 이벤트 핸들러
+    const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        const value = e.target.value.trim();
+        if (value !== '') {
+            handleHashtagClick(value);
+            setHashtag_input(''); // 입력란 초기화
+            }
+        }   
     };
 
-    // 해시태그 목록 표시
-    const hashtaglist_render = () => {
-    return (
-        <div className="hashtagList">
-         {hashtag_list.map((tag, index) => (
-        <div 
-         key={index} 
-         className="hashtagItem">
-        <span>{tag}</span>
-        <button 
-         onClick={() => hashtag_remove(index)}>XXX</button> 
-        </div>
-        ))}
-        </div>
-        );
+    // 해시태그 선택 삭제 함수
+    const handleRemoveHashtag = (tagId) => {
+    // 선택된 해시태그 목록에서 해당 식별자를 가진 해시태그를 제거
+    const updatedHashtags = hashtag_select.filter(item => item.id !== tagId);
+        setHashtag_select(updatedHashtags);
+
+    // 입력 상자에는 선택된 해시태그만 남도록 업데이트
+    const updatedInput = updatedHashtags.map(tag => tag.text).join(', '); // 쉼표와 공백을 사용하여 해시태그들을 연결
+        setHashtag_input(updatedInput);
     };
 
-    // 선택 가능한 연관 해시태그 목록을 렌더링하는 함수
-    const hashtagEx_render = () => {
+    // 선택된 해시태그 목록 렌더링 함수
+    const renderSelectedHashtags = () => {
     return (
-        <ul className="hashtag_related">
-        {hashtag_Ex.map(tag => (
-        <li 
-         key={tag} 
-         onClick={() => handleHashtagClick(tag)}>{tag}</li>
-        ))}
-        </ul>
+        <div className="selected_hashtags">
+            {hashtag_select.map(tag => (
+                <span key={tag.id} className="selected_hashtag">
+                    {tag.text}
+                    <button onClick={() => handleRemoveHashtag(tag.id)}>X</button>
+                </span>
+            ))}
+        </div>
         );
     };
 
@@ -147,13 +152,19 @@ const Posting = () => {
         console.log(photoSelect);
         // 업로드 후 상태 초기화
         setPhotoSelect([]);
-        setPhotoPopup(false);
+        setPhotoPopup(false); // 팝업 닫기
     };
 
     // 사진 파일 선택 시 실행되는 함수
     const handlePhotoSelect = (e) => {
         // 선택한 파일들을 상태에 추가
         setPhotoSelect(Array.from(e.target.files));
+    if (photoSelect.length + e.target.files.length > 10) {
+        // 최대 10장까지만 업로드할 수 있도록 제한
+        alert("최대 10장까지 업로드할 수 있습니다.");
+        return;
+        }
+        setPhotoSelect([...photoSelect, ...e.target.files]);
     };
 
     // 사진 팝업 취소 시 실행되는 함수
@@ -163,6 +174,26 @@ const Posting = () => {
         setPhotoPopup(false);
     };
 
+    // 사진 업로드 팝업 내에 있는 사진 삭제 함수
+    const handleDeletePhoto = (index) => {
+    const updatedPhotoSelect = [...photoSelect];
+        updatedPhotoSelect.splice(index, 1); // 선택한 인덱스의 사진을 제거
+        setPhotoSelect(updatedPhotoSelect); // 상태 업데이트
+    };
+
+    // 사진 업로드 팝업 내의 각 사진 컴포넌트
+    const renderPhotoItem = (photo, index) => (
+    <div 
+     key={index} 
+     className="photo_item">
+        <img 
+         src={URL.createObjectURL(photo)} 
+         alt={`Photo ${index}`} />
+        <button 
+         onClick={() => handleDeletePhoto(index)}>삭제</button>
+    </div>
+    );
+    
     return (
         <div className='posting_body'>
             <h1>System.out.println(“”);</h1>
@@ -239,22 +270,30 @@ const Posting = () => {
             <div className="posting_hashtag">
             <label 
              For="hashtag">태그</label>
+            <div className="hashtag_wrapper">
             <input
              type="text"
              id="hashtag"
              placeholder="Hashtag"
-             value={hashtag}
+             value={hashtag_input}
              onChange={handleInputChange}
+             onKeyDown={handleKeyDown} 
             />
-            {hashtaglist_render()}
-            {/* [예시] 연관 검색어 표시 */}
-            {hashtag_Ex.length > 0 && (
-            <ul 
-             className="hashtag_related">
-            {hashtag_Ex.map(tag => (
+            {hashtag_select.map((tag, index) => (
+            <span 
+             key={tag.id} 
+             className="selected_hashtag">
+            {tag.text}
+            <button onClick={() => handleRemoveHashtag(tag.id)}>X</button>
+            </span>
+            ))}
+            </div>
+             {hashtag_ex.length > 0 && (
+            <ul className="hashtag_related">
+             {hashtag_ex.map(tag => (
             <li 
              key={tag} 
-             onClick={() => setHashtag(tag)}>{tag}</li>
+             onClick={() => handleHashtagClick(tag)}>{tag}</li>
             ))}
             </ul>
             )}
@@ -286,6 +325,10 @@ const Posting = () => {
             {photoPopup && (
             <div className="photo_popup">
             <h2>업로드</h2>
+            {/* 선택된 사진들 표시 */}
+            <div className="selected_photos">
+             {photoSelect.map((photo, index) => renderPhotoItem(photo, index))}
+            </div>
             <input 
              type="file" 
              onChange={handlePhotoSelect} 
