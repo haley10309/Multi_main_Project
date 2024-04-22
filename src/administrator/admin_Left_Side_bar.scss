@@ -1,0 +1,81 @@
+.side_bar {
+    width: 21%;
+    margin: 1%;
+}
+
+.Recent_TableContainer {
+    
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px;
+    margin-right: 1%;
+}
+
+.tableRow {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+
+.forum_title {
+    margin: 2px;
+}
+
+.forum_title_div {
+    display: flex;
+    justify-content: space-between;
+    margin : 3%;
+}
+
+.forum_explanation {
+    padding: 5px;
+    background-color: rgb(244, 244, 244);
+    margin-bottom: 2%;
+}
+
+.Follow_button {
+    width: 90%;
+    margin: 7px;
+    background-color: rgb(255, 255, 255);
+}
+
+.Post_button {
+    margin: 3px;
+    background-color: rgb(254, 254, 254);
+}
+
+.forum_detail_explanation {
+    margin-bottom: 10px;
+    margin: 2%;
+    margin-bottom: 7%;
+}
+
+li {
+    list-style: none;
+}
+
+.numerical_data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.numerical_data_single {}
+
+.Hot_topic {
+    padding: 5px;
+    background-color: rgb(244, 244, 244);
+    margin-top: 2%;
+}
+
+.hot_topic_title {
+    padding: 1%;
+}
+.side_bar .forum_button {
+    color: black;
+    text-decoration: none;
+}
+.table_cell{
+    //제목 있는 곳
+    
+}

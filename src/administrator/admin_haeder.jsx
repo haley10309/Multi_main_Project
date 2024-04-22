@@ -1,5 +1,6 @@
 import React from 'react';
-import './admin_haeder.scss';
+import './admin_header.scss';
+
 
 const admin_haeder = () => {
     return (

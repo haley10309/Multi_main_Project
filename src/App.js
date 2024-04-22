@@ -17,6 +17,12 @@ import Debug from "./route/Section_pages/Debug";
 import Study from "./route/Section_pages/Study";
 import Search from "./route/Search";
 import Profile_Settings from "./Account/Profile_Settings";
+import Admin_Left_Side_bar from "./administrator/Admin_Left_Side_bar";
+import admin_haeder from "./administrator/admin_haeder";
+import Inquiry from "./administrator/Inquiry";
+import Manage_category from "./administrator/Manage_category";
+import Manage_member from "./administrator/Manage_member";
+import Report from "./administrator/Report";
 
 
 /* App.js */
@@ -37,12 +43,18 @@ class App extends Component {
           <Route path="/Login" element={<Login />} />
           <Route path="/Search" element={<Search/>}/>
           <Route path='/Board_Detail' element={<Board_Detail/>}/>
+          
           <Route path='/Forum_page' element={<Forum_page/>}/>
           <Route path="/Forum_page/Whole" element={<Whole/>}/>
           <Route path="/Forum_page/News" element={<News/>}/>
           <Route path="/Forum_page/Question" element={<Question/>}/>
           <Route path="/Forum_page/Debug" element={<Debug/>}/>
           <Route path="/Forum_page/Study" element={<Study/>}/>
+
+          <Route path="/admin/Inquiry" element={<Inquiry/>}/>
+          <Route path="/admin/Manage_category" element={<Manage_category/>}/>
+          <Route path="/admin/Manage_member" element={<Manage_member/>}/>
+          <Route path="/admin/Report" element={<Report/>}/>
           
 
         </Routes>
@@ -54,10 +66,18 @@ class App extends Component {
 
 function CustomSideBar_Left() {
   let location = useLocation();
-  if (location.pathname === "/Login"||location.pathname=== "/Join") {
+
+  // Check if the current path matches admin routes
+  const isAdminRoute =
+    location.pathname.startsWith("/admin/");
+
+  // Render the appropriate sidebar based on the route
+  if (location.pathname === "/Login" || location.pathname === "/Join") {
     return null; // Don't show Side_bar when path is '/Login'
   }
-  return <Left_Side_bar />;
+
+  // Render admin sidebar if it's an admin route, otherwise render regular sidebar
+  return isAdminRoute ? <Admin_Left_Side_bar /> : <Left_Side_bar />;
 }
 
 

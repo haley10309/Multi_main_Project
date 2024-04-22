@@ -3,8 +3,8 @@ import './Inquiry.scss';
 
 const Inquiry = () => {
     return (
-        <div>
-            
+        <div className="home_body">
+            dfsdf
         </div>
     );
 };
