@@ -36,8 +36,8 @@ const Admin_Left_Side_bar = () => {
 
             <TableRow className="tableRow">
               <TableCell>
-                <Link to="/admin/Manage_category" className="forum_button">
-                  카테고리 관리
+                <Link to="/admin/Manage_forum" className="forum_button">
+                  포럼관리
                 </Link>
               </TableCell>
               <TableCell align="right"></TableCell>

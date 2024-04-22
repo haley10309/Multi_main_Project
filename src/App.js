@@ -20,7 +20,7 @@ import Profile_Settings from "./Account/Profile_Settings";
 import Admin_Left_Side_bar from "./administrator/Admin_Left_Side_bar";
 import admin_haeder from "./administrator/admin_haeder";
 import Inquiry from "./administrator/Inquiry";
-import Manage_category from "./administrator/Manage_category";
+import Manage_forum from "./administrator/Manage_forum";
 import Manage_member from "./administrator/Manage_member";
 import Report from "./administrator/Report";
 
@@ -52,7 +52,7 @@ class App extends Component {
           <Route path="/Forum_page/Study" element={<Study/>}/>
 
           <Route path="/admin/Inquiry" element={<Inquiry/>}/>
-          <Route path="/admin/Manage_category" element={<Manage_category/>}/>
+          <Route path="/admin/Manage_category" element={<Manage_forum/>}/>
           <Route path="/admin/Manage_member" element={<Manage_member/>}/>
           <Route path="/admin/Report" element={<Report/>}/>
           
