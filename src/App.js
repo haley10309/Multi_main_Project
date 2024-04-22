@@ -10,11 +10,6 @@ import Left_Side_bar from "./fixed_component/Left_Side_bar";
 import Right_Side_bar from "./fixed_component/Right_Side_bar";
 import Board_Detail from "./route/Board_Detail";
 import Forum_page from "./route/Section_pages/Forum_page";
-import Whole from "./route/Section_pages/Whole";
-import News from "./route/Section_pages/News";
-import Question from "./route/Section_pages/Question";
-import Debug from "./route/Section_pages/Debug";
-import Study from "./route/Section_pages/Study";
 import Search from "./route/Search";
 import Profile_Settings from "./Account/Profile_Settings";
 import Admin_Left_Side_bar from "./administrator/Admin_Left_Side_bar";
@@ -42,13 +37,8 @@ class App extends Component {
           <Route path="/Login" element={<Login />} />
           <Route path="/Search" element={<Search/>}/>
           <Route path='/Board_Detail' element={<Board_Detail/>}/>
-          
           <Route path='/Forum_page' element={<Forum_page/>}/>
-          <Route path="/Forum_page/Whole" element={<Whole/>}/>
-          <Route path="/Forum_page/News" element={<News/>}/>
-          <Route path="/Forum_page/Question" element={<Question/>}/>
-          <Route path="/Forum_page/Debug" element={<Debug/>}/>
-          <Route path="/Forum_page/Study" element={<Study/>}/>
+
 
           <Route path="/admin/Inquiry" element={<Inquiry/>}/>
           <Route path="/admin/Manage_forum" element={<Manage_forum/>}/>
