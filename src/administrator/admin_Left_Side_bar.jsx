@@ -27,7 +27,7 @@ const Admin_Left_Side_bar = () => {
           <TableBody className="side_bar">
             <TableRow className="tableRow">
               <TableCell>
-                <Link to="/Forum_page/Whole" className="forum_button">
+                <Link to="/admin/Manage_member" className="forum_button">
                   회원관리
                 </Link>
               </TableCell>
@@ -36,7 +36,7 @@ const Admin_Left_Side_bar = () => {
 
             <TableRow className="tableRow">
               <TableCell>
-                <Link to="/Forum_page/Whole" className="forum_button">
+                <Link to="/admin/Manage_category" className="forum_button">
                   카테고리 관리
                 </Link>
               </TableCell>
@@ -45,7 +45,7 @@ const Admin_Left_Side_bar = () => {
 
             <TableRow className="tableRow">
               <TableCell>
-                <Link to="/Forum_page/Whole" className="forum_button">
+                <Link to="/admin/Report" className="forum_button">
                   신고
                 </Link>
               </TableCell>
@@ -54,7 +54,7 @@ const Admin_Left_Side_bar = () => {
 
             <TableRow className="tableRow">
               <TableCell>
-                <Link to="/Forum_page/Whole" className="forum_button">
+                <Link to="/admin/Inquiry" className="forum_button">
                   문의사항
                 </Link>
               </TableCell>
