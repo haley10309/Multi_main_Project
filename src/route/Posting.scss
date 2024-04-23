@@ -184,6 +184,23 @@
     padding: 20px;
     border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; // 가로 스크롤 적용
+    justify-content: center; 
+}
+
+  .selected_photos {
+    display: flex; 
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-width: 100%;
+    max-height: 50%;
+}
+
+  .photo_item img {
+    width: 100px; 
+    height: 100px; 
+    object-fit: cover; 
+    margin-right: 5px;
 }
   
   .photo_popup h2 {

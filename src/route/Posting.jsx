@@ -4,9 +4,11 @@ import './Posting.scss';
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
+import { Link } from '@mui/material';
 import axios from 'axios';
 
-const Posting = () => {
+
+const Posting = () => { 
     // 상태 변수 설정
     const [forum, setForum] = useState('');
     const [forum_edit, setForum_edit] = useState(false); //Forum 옆 돋보기 누르면 수정 
@@ -20,6 +22,7 @@ const Posting = () => {
     const [link, setLink] = useState('');
     const [photoPopup, setPhotoPopup] = useState(false); // 팝업 설정(닫힌 값, True가 호출되면 팝업 열림)
     const [photoSelect, setPhotoSelect] = useState([]); // 사진 파일 다중 업로드 상태 변수
+    const [isPhotoUploadOpen, setIsPhotoUploadOpen] = useState(false); // 사진 업로드 팝업을 열기 위한 상태 변수
 
     // 글 작성 완료 시 실행되는 함수
     const handleSubmit = () => {
@@ -146,13 +149,35 @@ const Posting = () => {
     };
 
     /* Photo */
-    // 사진 추가 완료 시 실행되는 함수
-    const handlePhotoUpload = () => {
-        // 선택한 사진을 업로드하는 로직 추가 필요
-        console.log(photoSelect);
-        // 업로드 후 상태 초기화
-        setPhotoSelect([]);
-        setPhotoPopup(false); // 팝업 닫기
+    // 사진 업로드 팝업 열기 이벤트 핸들러
+    const openPhotoUploadPopup = () => {
+        setIsPhotoUploadOpen(true);
+    };
+
+    // 사진 업로드 완료 시 실행되는 함수
+        const handlePhotoUpload = (e) => {
+    // 최대 10장까지 업로드 가능한지 확인
+    if (photoSelect.length > 10) {
+        alert("최대 10장까지 업로드 가능합니다.");
+        return;
+    }
+
+    // 업로드 후 상태 초기화
+    setPhotoPopup(false); // 팝업 닫기
+
+    // 예시:
+    // axios.post('upload_url', formData)
+    //   .then(response => {
+    //     // 업로드된 파일에 대한 정보를 상태에 추가
+    //     const uploadedPhotos = [...photoSelect, ...response.data];
+    //     setPhotoSelect(uploadedPhotos);
+    //     // 팝업 닫기
+    //     setPhotoPopup(false);
+    //   })
+    //   .catch(error => {
+    //     console.error('Error uploading photos:', error);
+    //     // 업로드 중에 오류가 발생한 경우에 대한 처리
+    //   });
     };
 
     // 사진 파일 선택 시 실행되는 함수
@@ -169,9 +194,8 @@ const Posting = () => {
 
     // 사진 팝업 취소 시 실행되는 함수
     const handlePhotoCancel = () => {
-        // 팝업 닫기 및 선택한 사진 초기화
-        setPhotoSelect([]);
-        setPhotoPopup(false);
+    // 팝업 닫기만 하고 선택한 사진 초기화는 하지 않음
+    setPhotoPopup(false);
     };
 
     // 사진 업로드 팝업 내에 있는 사진 삭제 함수
@@ -183,16 +207,30 @@ const Posting = () => {
 
     // 사진 업로드 팝업 내의 각 사진 컴포넌트
     const renderPhotoItem = (photo, index) => (
-    <div 
-     key={index} 
-     className="photo_item">
-        <img 
-         src={URL.createObjectURL(photo)} 
-         alt={`Photo ${index}`} />
-        <button 
-         onClick={() => handleDeletePhoto(index)}>삭제</button>
+    <div key={index} className="photo_item">
+      <img
+        src={URL.createObjectURL(photo)}
+        alt={`Photo ${index}`}
+      />
+      <button onClick={() => handleDeletePhoto(index)}>X</button>
     </div>
-    );
+  );
+
+    // 업로드된 각 사진을 나타내는 컴포넌트
+    const renderUploadedPhotos = () => {
+    return (
+        <div className="uploaded-photos">
+        {photoSelect.map((photo, index) => (
+        <img
+            key={index}
+            src={URL.createObjectURL(photo)}
+            alt={`Uploaded Photo ${index}`}
+            style={{ width: "100px", height: "100px", objectFit: "cover", marginRight: "10px" }}
+        />
+        ))}
+        </div>
+        );
+        };
     
     return (
         <div className='posting_body'>
@@ -301,7 +339,8 @@ const Posting = () => {
             <div className="posting_link">
             <label 
              For="link">링크 </label>
-            <input 
+            <Link 
+            component="input" 
              type="text" 
              id="link"
              placeholder="Link" 
@@ -317,28 +356,25 @@ const Posting = () => {
              onChange={handlePhotoSelect} 
              multiple // 다중 파일 업로드 가능하도록 설정
              />
-            <button 
-             type="button" 
-             onClick={() => setPhotoPopup(true)}>업로드</button>
+            <button
+             type="button"
+             onClick={openPhotoUploadPopup} // 사진 첨부 팝업 열기
+            >
+            사진첨부
+            </button>
             </div>
             {/* 사진 업로드 팝업 */}
-            {photoPopup && (
+            {isPhotoUploadOpen && (
             <div className="photo_popup">
             <h2>업로드</h2>
             {/* 선택된 사진들 표시 */}
             <div className="selected_photos">
-             {photoSelect.map((photo, index) => renderPhotoItem(photo, index))}
+            {photoSelect.map((photo, index) => renderPhotoItem(photo, index))}
             </div>
-            <input 
-             type="file" 
-             onChange={handlePhotoSelect} 
-             multiple />
-            <button 
-             onClick={handlePhotoUpload}>올리기</button>
-            <button 
-             onClick={handlePhotoCancel}>삭제</button>
-            <button 
-             onClick={handlePhotoCancel}>취소</button>
+            <input type="file" onChange={handlePhotoSelect} multiple />
+            <button onClick={handlePhotoUpload}>올리기</button>
+            <button onClick={handlePhotoCancel}>삭제</button>
+            <button onClick={handlePhotoCancel}>취소</button>
             </div>
             )}
             <div className="posting_buttons">
