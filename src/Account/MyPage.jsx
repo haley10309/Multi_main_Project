@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { MdSettings } from "react-icons/md"; // 설정 아이콘
 import axios from "axios";
-import Board_Detail from "../route/Board_Detail"; // BoardDetail 컴포넌트를 import합니다.
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import MessageIcon from "@mui/icons-material/Message";
 
 import "./MyPage.scss";
 // written by owen 2024/04/17
 
+// user_id 나중에 토큰으로 바꾸기
 const MyPage = ({ user_id, opponent_id }) => {
   const [profile, setProfile] = useState({
     user_id: 0,
@@ -54,6 +57,23 @@ const MyPage = ({ user_id, opponent_id }) => {
       setLoading(false);
     }
   };
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      // 프로필 정보 API 호출
+      const profileResponse = await axios.get(`/profile/${user_id}`);
+      // 게시물 목록 API 호출
+      const postsResponse = await axios.get(`/posts/${user_id}`);
+      setProfile({
+        ...profileResponse.data,
+        posts: postsResponse.data,
+      });
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   //settings 아이콘 클릭 시 이동
   let navigate = useNavigate();
@@ -63,7 +83,9 @@ const MyPage = ({ user_id, opponent_id }) => {
 
   useEffect(() => {
     getProfile();
+    fetchData();
   }, profile);
+  // }, [user_id]);
 
   return (
     <div className="home_body">
@@ -85,12 +107,6 @@ const MyPage = ({ user_id, opponent_id }) => {
         <table>
           <thead>
             <tr>
-              {/* 서버 연결 후 바꾸기
-                <td>{profile.user.follower_count}</td>
-                <td>{profile.user.following_count}</td>
-                <td>{profile.user.board_ount}</td>
-                <td>{profile.user.comment_count}</td>
-                <td>{profile.user.likes_count}</td> */}
               <td>{profile.user?.follower_count || 0}</td>
               <td>{profile.user?.following_count || 0}</td>
               <td>{profile.user?.board_count || 0}</td>
@@ -144,18 +160,70 @@ const MyPage = ({ user_id, opponent_id }) => {
             </div>
           </ul>
         </nav>
-        {/* <nav className="navigation"> 옛날 거
-          <ul>
-            <div className="nav-item active">내 게시물</div>
-            <div className="nav-item">내가 쓴 댓글</div>
-            <div className="nav-item">좋아요 한 게시물</div>
-            <div className="nav-item">저장한 게시물</div>
-          </ul>
-        </nav> */}
-        <div>
-          <Board_Detail forumName="내 게시물" />
+        <div className="posts">
+          {(profile.posts || []).map((post) => (
+            <div key={post.id} className="post">
+              <div className="post-header">
+                <img src={post.img} alt={post.title} />
+                <div>{post.nickname}</div>
+                <div>{post.create_date}</div>
+              </div>
+              <div className="post-body">
+                <h4>{post.title}</h4>
+                <p>{post.hashtags && post.hashtags.join(", ")}</p>{" "}
+                {/* 해시태그 배열이 존재할 경우 문자열로 변환 */}
+                <div className="post-footer">
+                  <ThumbUpIcon /> {post.like_count}
+                  <MessageIcon /> {post.comment_count}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-        {/* <div className="content">
+
+        {/* <div className="posting_box">
+        <div className="profile_box">
+          <div className="profile_img_and_name">
+            <img
+              src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYLJauBsuuhYaRAYccQZ2d-UtBTCOgsHMQmw&s`}
+              className="profile_img"
+              alt="React"
+            />
+            <h4 className="profile_name">nick name</h4>
+          </div>
+          <li className="upload_time">create date</li>
+        </div>
+        <div className="title_div">
+          <div className="board_title">
+            <div>
+              <Link
+                className="title_to_Board"
+                to={"/Board_Detail"}
+                state={{ forum_name: "하영" }}
+              >
+                <li className="title_li">title</li>
+                <li className="title_li">Hashtag</li>
+              </Link>
+            </div>
+
+            <div className="likes_and_comment">
+              <ThumbUpIcon />
+              like_count
+              <MessageIcon />
+              comment_count
+            </div>
+          </div>
+
+          <img
+            src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYLJauBsuuhYaRAYccQZ2d-UtBTCOgsHMQmw&s`}
+            className="img_post"
+            alt="React"
+          />
+        </div>
+
+        <div className="hashtag"></div>
+      </div>
+        <div className="content">
           <div className="post-card">
             <div className="post-avatar"></div>
             <div className="post-details">
