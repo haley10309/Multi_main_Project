@@ -1,7 +1,7 @@
-import React from "react";
-import "./Board_Detail.scss";
+import React from 'react';
+import './Board_Detail.scss';
 
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 const Board_Detail = () => {
   const location = useLocation();
@@ -17,19 +17,23 @@ const Board_Detail = () => {
               <div className="post-forumname">{forumName}</div>
               <div className="post-nickname">Nickname</div>
             </div>
-            
+
             <div className="post-time">2분 전</div>
             <div className="post-more-options">...</div>
           </div>
 
           <div className="post-content">포스팅내용내용내용</div>
           <div className="hashtags">#hashtags</div>
-          <div className="post-image">Photo</div>
+          <img
+            src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYLJauBsuuhYaRAYccQZ2d-UtBTCOgsHMQmw&s`}
+            className="post_image"
+            alt="React"
+          />
           <div className="post-interactions">
-            <div className="post-likes-up">⬆</div>
+            <span className="post-likes-up">⬆</span>
             <div className="post-likes">3.2k</div>
-            <div className="post-likes-down">⬇</div>
-            <div className="post-comments">💬 3.2K</div>
+            <span className="post-likes-down">⬇</span>
+            <span className="post-comments">💬 3.2K</span>
           </div>
         </div>
         <div className="comment-input">
@@ -47,8 +51,10 @@ const Board_Detail = () => {
             </div>
             <div className="comment-content">댓글댓글댓글</div>
             <div className="comment-interactions">
-              <div className="comment-likes">⬆ 10K ⬇</div>
-              <div className="comment-reply">💬 답글</div>
+              <span className="comment-likes-up">⬆</span>
+              <div className="comment-likes"> 10K</div>
+              <span className="comment-likes-down">⬇</span>
+              <span className="comment-reply">💬 답글</span>
             </div>
           </div>
         </div>

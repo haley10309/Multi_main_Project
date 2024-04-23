@@ -16,9 +16,10 @@ import {
 
 const Left_Side_bar = () => {
   const [recentArr, setRecentArr] = useState([]); // Recent forum names
+const [fav_forums,setFav_forums] = useState([]); //즐겨찾기 추가한 포럼들 리스트
 
   const addItem = (new_recent_forum) => {
-    if (!recentArr.includes(new_recent_forum)) {
+    if (!recentArr.includes(new_recent_forum)) { 
       //추가하려는 값이 리스트에 없을 때,
       if (recentArr.length >= 5) {
         //리스트 길이가 5가 넣을 때
@@ -42,6 +43,15 @@ const Left_Side_bar = () => {
     if (localData) {
       setRecentArr(JSON.parse(localData));
     }
+    axios
+      .get("/favorite_forum")
+      .then((response) => {
+        setFav_forums(response.data);
+        console.log(fav_forums);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }, []);
 
   // 등록 후, data 변화가 생길 때 마다 로컬스토리지에 저장
@@ -108,6 +118,25 @@ const Left_Side_bar = () => {
                 <HeartFilled />
               </TableCell>
             </TableRow>
+            {fav_forums.map((forums)=>{
+              <TableRow className="tableRow">
+              <TableCell>
+                <Link
+                  to="/Forum_page"
+                  className="forum_button"
+                  state={{ forum_name: forums.forum ,curent_section : "전체" ,forum_id:forums.forum_id}}
+                  onClick={() => addItem("Forum1")}
+                >
+                  {forums.forum}
+                </Link>
+              </TableCell>
+              <TableCell align="right">
+                <HeartFilled />
+              </TableCell>
+            </TableRow>
+            })}
+            
+
           </TableBody>
         </Table>
       </TableContainer>

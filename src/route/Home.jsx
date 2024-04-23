@@ -10,13 +10,27 @@ import axios from 'axios';
 const Home = () => {
   const navigate = useNavigate();
   const [view, setView] = useState(false);
-  const [it_news, setIt_news] = useState([]);
+  
+  const [board, setBoard] = useState([]); //게시물 변수
 
   useEffect(() => {
     axios.get('/home')
       .then(response => {
+        const data = response.data;
+        const data_board = data.board;
+       
+        const boards = data_board.map((board) => ({
+          pro_path: board.pro_path,
+          nickname: board.nickname,
+          create_date: board.create_date,
+          title: board.title,
+          like_count: board.like_count,
+          comment_count: board.comment_count,
+          img_path: board.img_path,
+        }))
+        setBoard(boards);
         console.log(response);
-        setIt_news(response.data);
+       
       })
       .catch(error => {
         console.error('Error fetching IT news:', error);
@@ -77,6 +91,46 @@ const Home = () => {
 
         <div className="hashtag"></div>
       </div>
+      {board.map((news)=>{
+        <div className="posting_box">
+        <div className="profile_box">
+          <div className="profile_img_and_name">
+            <img
+              src={news.img_path}
+              className="profile_img"
+              alt="React"
+            />
+            <h4 className="profile_name">{news.nickname}</h4>
+          </div>
+          <li className="upload_time">{news.create_date}</li>
+        </div>
+
+        <div className="title_div">
+          <div className="board_title_and_likes" >
+            <div className="board_title">
+              <li className="title_li">{news.title}</li>
+            </div>
+
+            <div className="likes_and_comment">
+              <ThumbUpIcon />
+              {news.like_count}
+              <MessageIcon />
+              {news.comment_count}
+            </div>
+          </div>
+
+          <img
+            src={news.img_path}
+            className="img_post"
+            alt="React"
+          />
+        </div>
+
+        <div className="hashtag"></div>
+      </div>
+      })}
+      
+      
     </div>
   );
 };
