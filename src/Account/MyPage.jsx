@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-import { MdSettings } from 'react-icons/md'; // 설정 아이콘
+import { useNavigate } from "react-router-dom";
+import { MdSettings } from "react-icons/md"; // 설정 아이콘
 import axios from "axios";
+import Board_Detail from "../route/Board_Detail"; // BoardDetail 컴포넌트를 import합니다.
 
 import "./MyPage.scss";
 // written by owen 2024/04/17
@@ -12,7 +13,7 @@ const MyPage = ({ user_id, opponent_id }) => {
     follower_count: 0,
     following_count: 0,
     board_count: 0,
-    
+
     comment_count: 0,
     likes_count: 0,
     img_path: "",
@@ -20,6 +21,14 @@ const MyPage = ({ user_id, opponent_id }) => {
   // const [opponentId, setOpponentId] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  // 현재 선택된 항목을 관리하는 state
+  const [activeItem, setActiveItem] = useState("내 게시물");
+
+  // 항목 클릭 이벤트 핸들러
+  const handleItemClick = (itemName) => {
+    setActiveItem(itemName); // 클릭된 항목으로 state 업데이트
+  };
 
   // 프로필 정보 가져오는 api
   const getProfile = async () => {
@@ -49,9 +58,9 @@ const MyPage = ({ user_id, opponent_id }) => {
   //settings 아이콘 클릭 시 이동
   let navigate = useNavigate();
   const settingsClick = () => {
-    navigate('/MyPage/Profile_Settings');
-  }
-  
+    navigate("/MyPage/Profile_Settings");
+  };
+
   useEffect(() => {
     getProfile();
   }, profile);
@@ -67,7 +76,7 @@ const MyPage = ({ user_id, opponent_id }) => {
           {/* userId와 opponentId 비교를 통한 조건부 렌더링 */}
           {user_id === opponent_id ? (
             <button className="settings-icon" onClick={settingsClick}>
-              <MdSettings size="35px"/>
+              <MdSettings size="35px" />
             </button>
           ) : (
             <button>팔로우</button>
@@ -101,13 +110,52 @@ const MyPage = ({ user_id, opponent_id }) => {
         </table>
         <nav className="navigation">
           <ul>
+            <div
+              className={`nav-item ${
+                activeItem === "내 게시물" ? "active" : ""
+              }`}
+              onClick={() => handleItemClick("내 게시물")}
+            >
+              내 게시물
+            </div>
+            <div
+              className={`nav-item ${
+                activeItem === "내가 쓴 댓글" ? "active" : ""
+              }`}
+              onClick={() => handleItemClick("내가 쓴 댓글")}
+            >
+              내가 쓴 댓글
+            </div>
+            <div
+              className={`nav-item ${
+                activeItem === "좋아요 한 게시물" ? "active" : ""
+              }`}
+              onClick={() => handleItemClick("좋아요 한 게시물")}
+            >
+              좋아요 한 게시물
+            </div>
+            <div
+              className={`nav-item ${
+                activeItem === "저장한 게시물" ? "active" : ""
+              }`}
+              onClick={() => handleItemClick("저장한 게시물")}
+            >
+              저장한 게시물
+            </div>
+          </ul>
+        </nav>
+        {/* <nav className="navigation"> 옛날 거
+          <ul>
             <div className="nav-item active">내 게시물</div>
             <div className="nav-item">내가 쓴 댓글</div>
             <div className="nav-item">좋아요 한 게시물</div>
             <div className="nav-item">저장한 게시물</div>
           </ul>
-        </nav>
-        <div className="content">
+        </nav> */}
+        <div>
+          <Board_Detail forumName="내 게시물" />
+        </div>
+        {/* <div className="content">
           <div className="post-card">
             <div className="post-avatar"></div>
             <div className="post-details">
@@ -121,8 +169,7 @@ const MyPage = ({ user_id, opponent_id }) => {
               </div>
             </div>
           </div>
-          {/* Repeat the .post-card for each post */}
-        </div>
+        </div> */}
       </div>
     </div>
   );
