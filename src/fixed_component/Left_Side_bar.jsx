@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Side_bar.scss";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 import {
   Table,
@@ -15,7 +15,6 @@ import {
 } from "@mui/material";
 
 const Left_Side_bar = () => {
-
   const [recentArr, setRecentArr] = useState([]); // Recent forum names
 
   const addItem = (new_recent_forum) => {
@@ -27,7 +26,7 @@ const Left_Side_bar = () => {
       }
       const newItem = new_recent_forum;
       // 새 배열 생성 (기존 배열 복사 + 새 항목 추가)
-      const updatedArray = [newItem,...recentArr];
+      const updatedArray = [newItem, ...recentArr];
       setRecentArr(updatedArray);
     }
   };
@@ -66,7 +65,11 @@ const Left_Side_bar = () => {
             {recentArr.map((forumArr) => (
               <TableRow className="tableRow" key={forumArr}>
                 <TableCell>
-                  <Link to="/Forum_page/Whole"  className="forum_button" state={{ forum_name: forumArr }} >
+                  <Link
+                    to="/Forum_page/Whole"
+                    className="forum_button"
+                    state={{ forum_name: forumArr }}
+                  >
                     {forumArr}
                   </Link>
                 </TableCell>
@@ -93,44 +96,12 @@ const Left_Side_bar = () => {
             <TableRow className="tableRow">
               <TableCell>
                 <Link
-                  to="/Forum_page/Whole"
+                  to="/Forum_page"
                   className="forum_button"
-                  state={{ forum_name: "Forum1" }}
+                  state={{ forum_name: "Forum1",curent_section : "전체" }}
                   onClick={() => addItem("Forum1")}
                 >
                   Forum1
-                </Link>
-              </TableCell>
-              <TableCell align="right">
-                <HeartFilled />
-              </TableCell>
-            </TableRow>
-
-            <TableRow className="tableRow">
-              <TableCell>
-                <Link
-                  to="/Forum_page/Whole"
-                  className="forum_button"
-                  state={{ forum_name: "Forum2" }}
-                  onClick={() => addItem("Forum2")}
-                >
-                  Forum2
-                </Link>
-              </TableCell>
-              <TableCell align="right">
-                <HeartFilled />
-              </TableCell>
-            </TableRow>
-
-            <TableRow className="tableRow">
-              <TableCell>
-                <Link
-                  to="/Forum_page/Whole"
-                  className="forum_button"
-                  state={{ forum_name: "Forum3" }}
-                  onClick={() => addItem("Forum3")}
-                >
-                  Forum3
                 </Link>
               </TableCell>
               <TableCell align="right">

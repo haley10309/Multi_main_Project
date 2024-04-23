@@ -4,10 +4,10 @@
 .posting_body {
     font-family: Arial, sans-serif;
     margin: 0 auto;
-    margin-left: 2%;
-    padding: 2%;
+    margin-left: 1.5%;
+    padding: 1.5%;
     width: 75%;
-  }
+}
 
 // Title 
 .posting_body h1 {
@@ -16,6 +16,12 @@
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
+
+.posting_body label {
+    font-weight: bold;
+    margin-right: 5%;
+    vertical-align: top;
+}
 
 // Text-box
 .posting_forum label,
@@ -90,7 +96,7 @@
     vertical-align: top;
 }
 
-// Text-box 스타일 (태그 Hashtag따로)
+// Text-box 스타일 (태그 Hashtag 따로)
 .posting_hashtag input {
   width: 75%;
   padding: 7px;
@@ -99,21 +105,31 @@
   box-sizing: border-box;
   background-color: #f9f9f9;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  margin-left: 3.5px; 
+  vertical-align: middle; // 수직 정렬 추가
 }
 
-// 해시태그 입력란
+// Text-box 스타일 (태그 Hashtag 따로)
 .posting_hashtag {
-  
-  // hashtag - 연관 해시태그
+  display: flex; // Flexbox를 사용하여 내부 요소를 가로로 정렬
+  align-items: center; // 수직 가운데 정렬
+  flex-wrap: wrap; // 넘칠 경우 줄 바꿈
+
+  input {
+    flex: 1; // 남은 공간을 모두 차지하도록 함
+    margin-right: 10px; // 입력 상자와 해시태그 간격 조정
+    margin-bottom: 10px; // 입력 상자와 해시태그 간격 조정
+  }
+
   .hashtag_related {
     list-style-type: none;
-    padding-left: 8%;
+    padding-left: 0;
     display: flex;
     flex-wrap: wrap;
+    margin-top: 10px; // 해시태그 자동완성과 입력 상자 간격 조정
   }
 
   li {
+    flex-wrap: wrap;
     background-color:  #12e695;
     padding: 5px 10px;
     margin-right: 5px;
@@ -126,6 +142,26 @@
       background-color: #eeff00;
     }
   }
+}
+
+// Text-box 스타일 (해시태그 입력란 내의 선택된 해시태그 스타일)
+.selected_hashtag {
+  flex-wrap: wrap;
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.selected_hashtag button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
 // Button - 사진 업로드
