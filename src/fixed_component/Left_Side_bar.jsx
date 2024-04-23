@@ -19,7 +19,7 @@ const Left_Side_bar = () => {
 const [fav_forums,setFav_forums] = useState([]); //즐겨찾기 추가한 포럼들 리스트
 
   const addItem = (new_recent_forum) => {
-    if (!recentArr.includes(new_recent_forum)) {
+    if (!recentArr.includes(new_recent_forum)) { 
       //추가하려는 값이 리스트에 없을 때,
       if (recentArr.length >= 5) {
         //리스트 길이가 5가 넣을 때

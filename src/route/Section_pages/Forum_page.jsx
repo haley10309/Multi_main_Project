@@ -67,6 +67,47 @@ const Forum_page = () => {
           {view && <DropDown />}
         </ul>
       </div>
+      <div  className="posting_box">
+          <div className="profile_box">
+            <div className="profile_img_and_name">
+              <img
+                src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYLJauBsuuhYaRAYccQZ2d-UtBTCOgsHMQmw&s`}
+                className="profile_img"
+                alt="React"
+              />
+              <h4 className="profile_name">nickname</h4>
+            </div>
+            <li className="upload_time">create_date</li>
+          </div>
+          <div className="title_div">
+            <div className="board_title">
+              <div>
+                <Link
+                  className="title_to_Board"
+                  to={"/Board_Detail"}
+                  state={{ forum_name: "하영" }}
+                >
+                  <li className="title_li">title</li>
+                </Link>
+              </div>
+
+              <div className="likes_and_comment">
+                <ThumbUpIcon />
+                like_count
+                <MessageIcon />
+                comment_count
+              </div>
+            </div>
+
+            <img
+              src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYLJauBsuuhYaRAYccQZ2d-UtBTCOgsHMQmw&s`}
+              className="img_post"
+              alt="React"
+            />
+          </div>
+
+          <div className="hashtag"></div>
+        </div>
 
       {board.map((single_board, index) => (
         <div key={index} className="posting_box">
