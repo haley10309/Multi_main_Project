@@ -11,7 +11,7 @@ const Home = () => {
   const navigate = useNavigate();
   const [view, setView] = useState(false);
   
-  const [board, setBoard] = useState([]); //게시물
+  const [board, setBoard] = useState([]); //게시물 변수
 
   useEffect(() => {
     axios.get('/home')
